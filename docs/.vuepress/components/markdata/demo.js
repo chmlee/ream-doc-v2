@@ -1,4 +1,90 @@
 export default {
+  string: `# Example
+- string: value
+- long string: Hello World
+- quoted string: "quote"`,
+
+  number: `# Example
+- number 1: $1$
+- number 2: $-2$
+- number 3: $3.1415926$`,
+
+  notNumber: `# Example
+- number: $1$
+- not number 1: a$2$
+- not number 2: $3$b`,
+
+  boolean: `# Example
+- bool 1: \`TRUE\`
+- bool 2: \`FALSE\`
+- not bool 1: \`true\`
+- not bool 2: FALSE `,
+
+  list1: `# Example
+- list of strings:
+  * item 1
+  * item 2
+  * item 3
+- list of numbers:
+  * $1$
+  * $-2$
+  * $3.1415926$`,
+
+  list2: `# Example
+- list of strings:
+* item 1
+* item 2
+* item 3`,
+
+  list3: `# Example
+- list of strings:
+  * item 1
+
+  * item 2
+  * item 3`,
+
+  annotation1: `# Example
+- key 1: value
+  > Annotation for string
+- key 2: $1$
+  > Annotation for number
+- key 3: \`TRUE\`
+  > Annotation for boolean`,
+
+  annotation2: `# Example
+- list:
+  * value
+    > Annotation for string
+  * $1$
+    > Annotation for number
+  * \`TRUE\`
+    > Annotation for boolean`,
+
+  annotation3: `# Example
+- key 1: value 1
+- key 2: value 2
+  > Annotation
+- key 3: value 3
+
+  > Valid annotation
+
+- key 4: value 4`,
+
+  entry1: `# Country
+- name: Belgium
+- capital: Brussels
+- population: $11433256$
+- euro_zone: \`TRUE\``,
+
+  entry2: `# Country
+- name: Belgium
+  > short for the Kingdom of Belgium
+- capital: Brussels
+- population: $11433256$
+  > data from 2019; retrieved from World Bank
+- euro_zone: \`TRUE\`
+  > joined in 1999`,
+
   Country: '# Country',
   Home: `# Showcase
 - string: Hello World

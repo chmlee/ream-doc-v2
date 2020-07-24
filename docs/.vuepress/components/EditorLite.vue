@@ -87,6 +87,7 @@ export default {
 .editor-lite {
   width: 100%;
   display: flex;
+  height: 300px;
 }
 
 .col {
@@ -103,7 +104,7 @@ export default {
 
 .input-textarea {
   width: 100%;
-  height: 400px;
+  height: 200px;
 }
 
 .input-panel {
@@ -132,7 +133,7 @@ export default {
 }
 
 .output-container {
-  height: 400px;
+  height: 200px;
 }
 
 pre {
@@ -141,7 +142,7 @@ pre {
   padding: 0;
   display: block;
   border-radius: 0;
-  height: 400px;
+  height: 200px;
   border-style: solid;
   border-width: thin;
   padding-left: 7px;
@@ -158,6 +159,7 @@ textarea {
 @media screen and (max-width: 800px) {
   .editor-lite {
     flex-direction: column;
+    height: 500px;
   }
 
   .col {

@@ -1,0 +1,143 @@
+# Variable
+
+`<variable>` assigns a `<value>` to a `<key>`, in the form of
+
+```markdown
+- <key>: <value>
+```
+Note that a space is required after dash and colon.
+
+`<key>` can't be empty.
+It may contain any upper and lowercase letters (`A-Za-z`), digits (`0-9`) and spaces (`0x20`), but must start with a letter.
+
+`<value>` can be any of the following primitive types:
+
+- [String](#string)
+- [Number](#number)
+- [Boolean](#boolean)
+- [List](#list)
+
+## String
+
+Example:
+```markdown
+# Example
+- string: value
+- long string: Hello World
+- quoted string: "quote"
+```
+
+<EditorLite item="string" />
+
+There is not need to quote strings.
+Quotation marks are stored as they are.
+
+:::tip
+The `# Example` in the first line is a Level-1 Entry, and is required in Markdata files.
+We will discuss this later in the documentation.
+:::
+
+Values can't contain line breaks.
+The following code will raise an error:
+```markdown
+# Example
+- key 1: first line
+         second line
+- key 2: value
+```
+
+## Number
+
+Numbers are surrounded by dollar signs (`$`).
+
+Example:
+```markdown
+# Example
+- number 1: $1$
+- number 2: $-2$
+- number 3: $3.1415926$
+```
+<EditorLite item="number" />
+
+If characters are placed outside the dollar signs, values will be stored as strings.
+
+Example:
+```markdown
+# Example
+- number: $1$
+- not number 1: a$1$
+- not number 2: $1$b
+```
+<EditorLite item="notNumber" />
+
+## Boolean
+
+Boolean values are `` `TRUE` `` and `` `FALSE` ``, both uppercase and surrounded by backticks (`` ` ``).
+
+Example:
+
+```markdown
+# Example
+- bool 1: `TRUE`
+- bool 2: `FALSE`
+- not bool 1: `true`
+- not bool 2: FALSE
+```
+<EditorLite item="boolean" />
+
+Note that boolean values must be exact matches.
+Values not surrounded by batckticks or not uppercased will be stored as strings.
+
+## List
+
+A list is a sequence of strings, numbers, and/or boolean, in the form of:
+
+```
+- <key>:
+  * <item>
+  * <item>
+  ...
+  * <item>
+```
+`<item>` should be in separate lines, following an asterisk (`*`)
+
+Example:
+```markdown
+# Example
+- list of strings:
+  * item 1
+  * item 2
+  * item 3
+- list of numbers:
+  * $1$
+  * $-2$
+  * $3.1415926$
+```
+<EditorLite item="list1" />
+
+::: tip
+By default, lists will be ignored when compiled to datasets.
+:::
+
+Spaces before asterisks are not required, but two spaces are recommended.
+
+```markdown
+# Example
+- still a list:
+* item 1
+* item 2
+* item 3
+```
+
+<EditorLite item="list2" />
+
+Empty lines between list items are allowed, but discouraged:
+```markdown
+# Example
+- still a list:
+  * item 1
+
+  * item 2
+  * item 3
+```
+<EditorLite item="list3" />

@@ -10,7 +10,8 @@
   "repository": "https://github.com/chmlee/markdata.js/markdata",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "devv" : "vuepress dev --host localhost"
   },
   "license": "MIT",
   "devDependencies": {

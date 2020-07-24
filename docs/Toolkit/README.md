@@ -1,8 +1,5 @@
 ---
-sidebar: [
-  '/',
-  '/test'
-]
+sidebar: auto
 ---
 
 # Config

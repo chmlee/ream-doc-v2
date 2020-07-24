@@ -35,7 +35,15 @@ module.exports = {
     nav: [
       {
         text: 'Language',
-        link: '/language/',
+        link: '/Language/Getting-Started',
+      },
+      {
+        text: 'Toolkit',
+        link: '/Toolkit/',
+      },
+      {
+        text: 'Contribution',
+        link: '/Contribution/',
       },
       {
         text: 'Github',
@@ -43,16 +51,20 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/guide/': [
+      '/Language/': [
+        'Getting-Started',
         {
-          title: 'Guide',
+        title: 'Basic',
+        path: '/Language/Basic/Variable',
           collapsable: false,
+          sidebarDepth: 1,
           children: [
-            '',
-            'using-vue',
-          ]
-        }
-      ],
+          '/Language/Basic/Variable',
+          '/Language/Basic/Annotation',
+          '/Language/Basic/Entry'
+        ]
+      },
+      ]
     }
   },
 
