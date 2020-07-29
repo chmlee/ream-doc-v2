@@ -15,7 +15,6 @@ It may contain any upper and lowercase letters (`A-Za-z`), digits (`0-9`) and sp
 - [String](#string)
 - [Number](#number)
 - [Boolean](#boolean)
-- [List](#list)
 
 ## String
 
@@ -39,12 +38,22 @@ We will discuss this later in the documentation.
 
 Values can't contain line breaks.
 The following code will raise an error:
-```markdown
+```markdown{3}
 # Example
 - key 1: first line
          second line
 - key 2: value
 ```
+::: details Known Issue
+Actually the current parser is able parse the example.
+It will read everything before and including `- key 1: first line`, then stop parsing and return whatever has been parsed.
+So it is equivalent to
+```markdown
+# Example
+- key 1: first line
+```
+Error handing will be improved in future versions.
+:::
 
 ## Number
 
@@ -59,7 +68,7 @@ Example:
 ```
 <EditorLite item="number" />
 
-If characters are placed outside the dollar signs, values will be stored as strings.
+If characters are placed outside the dollar signs, the entire value will be stored as strings, preserving the dollar signs.
 
 Example:
 ```markdown
@@ -69,6 +78,25 @@ Example:
 - not number 2: $1$b
 ```
 <EditorLite item="notNumber" />
+
+::: details Known Issue
+The current parser will identify every value surrounded by dollar signs as a number.
+So
+```markdown
+# Example
+- number: $1$
+- not a number: $abc$
+```
+generates
+```csv
+1,abc
+```
+instead of
+```csv
+1,$abc$
+```
+Strict number type checking will be implemented in the future.
+:::
 
 ## Boolean
 
@@ -87,57 +115,3 @@ Example:
 
 Note that boolean values must be exact matches.
 Values not surrounded by batckticks or not uppercased will be stored as strings.
-
-## List
-
-A list is a sequence of strings, numbers, and/or boolean, in the form of:
-
-```
-- <key>:
-  * <item>
-  * <item>
-  ...
-  * <item>
-```
-`<item>` should be in separate lines, following an asterisk (`*`)
-
-Example:
-```markdown
-# Example
-- list of strings:
-  * item 1
-  * item 2
-  * item 3
-- list of numbers:
-  * $1$
-  * $-2$
-  * $3.1415926$
-```
-<EditorLite item="list1" />
-
-::: tip
-By default, lists will be ignored when compiled to datasets.
-:::
-
-Spaces before asterisks are not required, but two spaces are recommended.
-
-```markdown
-# Example
-- still a list:
-* item 1
-* item 2
-* item 3
-```
-
-<EditorLite item="list2" />
-
-Empty lines between list items are allowed, but discouraged:
-```markdown
-# Example
-- still a list:
-  * item 1
-
-  * item 2
-  * item 3
-```
-<EditorLite item="list3" />

@@ -13,11 +13,10 @@ in variables in the form of
 and items in [lists](/Language/Basic/Variable.html#list) in the form of
 
 ```markdown
-- <key>: <value>
+- <key>:
   * <item>
     > <annotation>
 ```
-for elements in lists.
 
 Examples:
 
@@ -44,7 +43,7 @@ Examples:
 ```
 <EditorLite item="annotation2" />
 
-Observe that when compile to datasets, annotations are ignored.
+Annotations are ignored when compiled to datasets.
 
 Line breaks between values and annotation are allowed, but discouraged.
 

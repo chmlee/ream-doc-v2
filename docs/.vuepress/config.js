@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Markdata.js',
+  title: 'Markdata',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -54,16 +54,39 @@ module.exports = {
       '/Language/': [
         'Getting-Started',
         {
-        title: 'Basic',
-        path: '/Language/Basic/Variable',
+          title: 'Basic',
+          path: '/Language/Basic/Variable',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-          '/Language/Basic/Variable',
-          '/Language/Basic/Annotation',
-          '/Language/Basic/Entry'
-        ]
-      },
+            '/Language/Basic/Variable',
+            '/Language/Basic/List',
+            '/Language/Basic/Annotation',
+            '/Language/Basic/Entry'
+          ]
+        },
+        {
+          title: 'Schema',
+          path: '/Language/Advance/Schema',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            '/Language/Advance/Typed-Variable',
+            '/Language/Advance/Template-Script'
+          ]
+        },
+      ],
+      '/Toolkit/': [
+        {
+          title: 'Toolkit',
+          path: '/Toolkit/',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            '/Toolkit/Parser',
+            '/Toolkit/Editor'
+          ]
+        }
       ]
     }
   },

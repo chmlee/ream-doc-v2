@@ -74,7 +74,7 @@ export default {
 - name: Belgium
 - capital: Brussels
 - population: $11433256$
-- euro_zone: \`TRUE\``,
+- euro zone: \`TRUE\``,
 
   entry2: `# Country
 - name: Belgium
@@ -82,8 +82,73 @@ export default {
 - capital: Brussels
 - population: $11433256$
   > data from 2019; retrieved from World Bank
-- euro_zone: \`TRUE\`
+- euro zone: \`TRUE\`
   > joined in 1999`,
+
+  entry3: `# Country
+- name: Belgium
+
+## Language
+- name: Dutch
+
+## Language
+- name: French
+
+## Language
+- name: German`,
+
+  entry4: `# Country
+- name: Belgium
+
+## Language
+- name: Dutch
+  > This is a Level 2 Entry
+
+### Language
+- name: French
+  > This is a Level 3 Entry
+
+### Language
+- name: German
+  > This is a Level 3 Entry`,
+
+  entry5: `# Country
+- name: Belgium
+
+## Language
+- name: Dutch
+  > This is a Level 2 Entry
+
+## Language
+- name: French
+  > This is a Level 2 Entry
+
+### Language
+- name: German
+  > This is a Level 3 Entry`,
+
+  entry6: `# Country
+- name: Belgium
+
+## City
+- name: Brussels
+
+## Language
+- name: Dutch`,
+
+  entry7: `# Country
+- name: Belgium
+
+## Language
+- name: Dutch
+- size: $0.59$
+
+## Language
+- size: $0.4$
+- name: French
+
+## Language
+- name: German`,
 
   Country: '# Country',
   Home: `# Showcase

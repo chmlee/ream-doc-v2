@@ -66,6 +66,7 @@ export default {
       if (this.show) {
         return 'Hide Editor'
       } else {
+        this.output = ''
         return 'Try it!'
       }
     }
