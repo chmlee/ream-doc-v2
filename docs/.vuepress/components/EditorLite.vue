@@ -34,7 +34,7 @@
 
 <script>
 import { MdFile } from './markdata/markdata.min.js'
-import demo from './markdata/demo.js'
+import demo from './markdata/demo/demo.js'
 
 export default {
   props: [

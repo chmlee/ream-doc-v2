@@ -75,6 +75,8 @@ module.exports = {
             '/Language/Advance/Template-Script'
           ]
         },
+        'Comparison',
+        'Git-Integration',
       ],
       '/Toolkit/': [
         {

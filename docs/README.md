@@ -7,13 +7,13 @@ footer: Made by Chih-Ming Louis Lee
 ---
 
 Markdata is a free and open-source data serialization standard for social science datasets, featuring markdown-like syntax.
-The language is designed to be human-readable, modular and reusable "source code" for your datasets.
+The language is designed to be the human-readable, modular and reusable "source code" for your datasets.
 
-Multiple tools build upon the language are under development to provide a user-friendly workflow to create, edit and distribute datasets, including a [parser](#) that compiles Markdata file into analysis-ready format, such as CSV.
+Multiple tools build upon the language are under development to provide a user-friendly workflow to create, edit and distribute datasets, including a [parser](#) that compiles Markdata file into analysis-ready format.
 See [Toolkit](./Toolkit) for more information.
 
 Though not required, the language is designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative project.
-[See how Markdata works with Git](#)
+[See how Markdata works with Git](/Language/Git-Integration)
 
 ::: warning NOTE
 The project is still at its alpha stage.
