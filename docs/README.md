@@ -12,7 +12,7 @@ The language is designed to be the human-readable, modular and reusable "source 
 Multiple tools build upon the language are under development to provide a user-friendly workflow to create, edit and distribute datasets, including a [parser](#) that compiles Markdata file into analysis-ready format.
 See [Toolkit](./Toolkit) for more information.
 
-Though not required, the language is designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative project.
+Though not required, the language is designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative projects.
 [See how Markdata works with Git](/Language/Git-Integration)
 
 ::: warning NOTE
