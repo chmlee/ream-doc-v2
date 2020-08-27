@@ -79,7 +79,7 @@ The three `## Language`  subentries are also known as the *terminal nodes* as th
 When compiling the dataset, the parser look for all terminal nodes in the Markdata file and flatten the data structure.
 Thus the previous example produces a dataset with three rows (one for each terminal node) and two columns (one of each variable).
 
-Note that the variable keys are scoped, so `## Offical Language` is allowed to have a variable with the key `name`.
+Note that the variable keys are scoped, so `## Offical Language` is allowed to have a variable with the key `name` despite its parent entry `# Country` also contain a variable with the same key.
 
 Level-2 Entries can only be nested in a Level-1 Entry, and Level-3 Entries can only be nested in a Level-2 Entry, and so forth.
 Compare the following two examples with the previous one:
@@ -89,15 +89,15 @@ Compare the following two examples with the previous one:
 
 ## Language
 - name: Dutch
-  > This is a Level 2 Entry
+  > This is in a Level 2 Entry
 
 ### Language
 - name: French
-  > This is a Level 3 Entry
+  > This is in a Level 3 Entry
 
 ### Language
 - name: German
-  > This is a Level 3 Entry
+  > This is in a Level 3 Entry
 ```
 <EditorLite item="entry4" />
 
@@ -107,14 +107,14 @@ Compare the following two examples with the previous one:
 
 ## Language
 - name: Dutch
-  > This is a Level 2 Entry
+  > This is in a Level 2 Entry
 
 ## Language
 - name: French
-  > This is a Level 2 Entry
+  > This is in a Level 2 Entry
 
 ### Language
-  > This is a Level 3 Entry
+  > This is in a Level 3 Entry
 - name: German
 ```
 

@@ -33,7 +33,7 @@ We start by creating a template for `data.md`:
 and save a snapshot of it.
 This snapshot is known as a *commit*.
 
-Your two collaborators, Alice and Bob, specializes in Asia and Europe respectively and are tasked to collect data for the respective country.
+Your two collaborators, Alice and Bob, specializes in Asia and Europe respectively and are tasked to collect data for corresponding region.
 Each of them download a copy of the `data.md` file, to their own *branches*, and work on the files separately.
 
 Now there are three versions of the same file in three branches: `master`, `alice` and `bob`.
@@ -88,20 +88,20 @@ Note that neither Alice nor Bob is able to see the changes commit in the other b
 To update the `master` branch, Alice and Bob has to request the changes to be pulled to the `master` branch.
 Such requests are called *pull requests*.
 
-The `master` branch first merges the changes committed in `alice`.
+The `master` branch first merges the changes committed in `bob`.
 
 ```markdown
 # Dataset
 
 ## Country
 - name: Afghanistan
-- pop: $38041754$
-- GDP: $1901353830$
+- pop: %
+- GDP: %
 
 ## Country
 - name: Albania
-- pop: %
-- GDP: %
+- pop: $2854191$
+- GDP: $15278077450$
 
 ## Country
 - name: Algeria
@@ -111,7 +111,8 @@ The `master` branch first merges the changes committed in `alice`.
 
 ![Git-4](./img/Git-4.svg)
 
-Then merges the changes committed in `bob`.
+Then merges the changes committed in `alice`.
+The first phase is now completed, and is *tagged* as version `v0.1`.
 
 ```markdown
 # Dataset
@@ -133,4 +134,8 @@ Then merges the changes committed in `bob`.
 ```
 ![Git-5](./img/Git-5.svg)
 
+To keep their branches updated with the changes, Alice and Bob need to *rebase* their branches to `master`.
+
 ![Git-6](./img/Git-6.svg)
+
+![automation](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)

@@ -45,7 +45,7 @@ The following code will raise an error:
 - key 2: value
 ```
 ::: details Known Issue
-Actually the current parser is able parse the example.
+The current parser is able to parse the example.
 It will read everything before and including `- key 1: first line`, then stop parsing and return whatever has been parsed.
 So it is equivalent to
 ```markdown
