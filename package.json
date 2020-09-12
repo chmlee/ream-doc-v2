@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "devv" : "vuepress dev --host localhost"
+    "devv": "vuepress dev --host localhost"
   },
   "license": "MIT",
   "devDependencies": {
