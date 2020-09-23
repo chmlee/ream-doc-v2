@@ -1,3 +1,5 @@
 # Comparison
 
-aaa
+::: warning NOTE
+a
+:::

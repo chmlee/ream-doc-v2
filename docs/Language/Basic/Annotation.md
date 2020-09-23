@@ -1,6 +1,6 @@
 # Annotation
 
-Annotaion follow
+Annotations follow
 [strings](/Language/Basic/Variable.html#string),
 [numbers](/Language/Basic/Variable.html#number),
 and
@@ -45,7 +45,7 @@ Examples:
 
 Annotations are ignored when compiled to datasets.
 
-Line breaks between values and annotation are allowed, but discouraged.
+Empty lines around annotations are allowed, but discouraged.
 
 ```markdown
 # Example

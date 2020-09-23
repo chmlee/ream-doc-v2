@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Markdata',
+  title: 'REAM',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -38,8 +38,8 @@ module.exports = {
         link: '/Language/Getting-Started',
       },
       {
-        text: 'Toolkit',
-        link: '/Toolkit/',
+        text: 'Toolchain',
+        link: '/Toolchain/',
       },
       {
         text: 'Contribution',
@@ -53,24 +53,23 @@ module.exports = {
     sidebar: {
       '/Language/': [
         'Getting-Started',
+        'Specs',
         {
           title: 'Basic',
-          path: '/Language/Basic/Variable',
           collapsable: false,
           sidebarDepth: 1,
           children: [
             '/Language/Basic/Variable',
-            '/Language/Basic/List',
             '/Language/Basic/Annotation',
             '/Language/Basic/Entry'
           ]
         },
         {
-          title: 'Schema',
-          path: '/Language/Advance/Schema',
+          title: 'Advanced',
           collapsable: false,
           sidebarDepth: 1,
           children: [
+            '/Language/Advance/Schema',
             '/Language/Advance/Typed-Variable',
             '/Language/Advance/Template-Script'
           ]
@@ -78,15 +77,15 @@ module.exports = {
         'Comparison',
         'Git-Integration',
       ],
-      '/Toolkit/': [
+      '/Toolchain/': [
         {
-          title: 'Toolkit',
-          path: '/Toolkit/',
+          title: 'Toolchain',
+          path: '/Toolchain/',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/Toolkit/Parser',
-            '/Toolkit/Editor'
+            '/Toolchain/Parser',
+            '/Toolchain/Editor'
           ]
         }
       ]

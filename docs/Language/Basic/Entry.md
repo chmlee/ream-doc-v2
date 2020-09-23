@@ -11,7 +11,7 @@ An entry name is proceeded by one or multiple pound signs `#`, in the form of:
 - <key n>: <value n>
 ```
 `# Example` in previous examples are Level-1 Entries, as denoted by the single leading pound sign.
-All Markdata files must start with a Level-1 Entry, and contains exactly one Level-1 Entry.
+All REAM files start with a Level-1 Entry, and contain exactly one Level-1 Entry.
 
 Entries are useful when describing an object with multiple attributes:
 
@@ -76,13 +76,14 @@ Examples:
 
 The `# Country` entry has one variable `name` and three Level-2 child entries `## Language`.
 The three `## Language`  subentries are also known as the *terminal nodes* as they do not contain any subentry.
-When compiling the dataset, the parser look for all terminal nodes in the Markdata file and flatten the data structure.
+When compiling the dataset, the parser look for all terminal nodes in the REAM file and flatten the data structure.
 Thus the previous example produces a dataset with three rows (one for each terminal node) and two columns (one of each variable).
 
-Note that the variable keys are scoped, so `## Offical Language` is allowed to have a variable with the key `name` despite its parent entry `# Country` also contain a variable with the same key.
+Note that the variable keys are scoped, so `## Language` is allowed to have a variable with the key `name` despite its parent entry `# Country` also contain a variable with the same key.
 
+Entry must be nested in order.
 Level-2 Entries can only be nested in a Level-1 Entry, and Level-3 Entries can only be nested in a Level-2 Entry, and so forth.
-Compare the following two examples with the previous one:
+Compare the datasets compiled from the following two examples with the previous one:
 ```markdown
 # Country
 - name: Belgium
@@ -120,7 +121,8 @@ Compare the following two examples with the previous one:
 
 <EditorLite item="entry5" />
 
-A visualization of the differences between the three schemas are as follows:
+A visualization of the differences between the three schemas are as follows.
+The terminal nodes are colored yellow.
 
 ![tree](./tree.svg)
 
@@ -160,6 +162,7 @@ Also, entries of the same class need not have identical variables, nor the same 
 
 <EditorLite item="entry7" />
 
-Observe that the order of the variables are preserved by default, and so the dataset produced is not too useful.
+Observe that the order of the variables are preserved by default.
 
-To check whether each entry contains the required variables and the correct orders, we need to specify its schema.
+The datasets compiled by the last two examples are not too useful for analysis.
+To compile quality analysis-ready datasets, we could specify the schema of the datasets.

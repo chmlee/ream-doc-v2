@@ -26,11 +26,11 @@ or
 ```
 
 Subtypes will be introduced, such as:
-- `Number:Interger`
-- `Number:Float`
-- `Number:Fraction`
-- `String:Year`
-- `String:Date`
+- `Number::Interger`
+- `Number::Float`
+- `Number::Fraction`
+- `String::Year`
+- `String::Date`
 
 New types will also be introduced, such as:
 - `Factor:[ (AF)rica | (AS)ia | (EU)rope | (N)orth (A)merica | (S)outh (A)merica ]`

@@ -138,4 +138,4 @@ To keep their branches updated with the changes, Alice and Bob need to *rebase* 
 
 ![Git-6](./img/Git-6.svg)
 
-![automation](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)
+And the cycle goes on.
