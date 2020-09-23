@@ -84,8 +84,9 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/Toolchain/Parser',
-            '/Toolchain/Editor'
+            '/Toolchain/REAM.js',
+            '/Toolchain/REAM-Editor',
+            '/Toolchain/REAM-LiteEditor.vue'
           ]
         }
       ]
