@@ -263,7 +263,7 @@ Assign `_NA_` to store "no response"
 - invalid na 2: _Na_
 ```
 maps to the following JSON:
-```josn
+```json
 {
     "valid na": "_NA_",
     "invalid na 1": "NA",

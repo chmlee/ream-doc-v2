@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         text: 'Github',
-        link: 'https://github.com/chmlee/markdata.js'
+        link: 'https://github.com/chmlee/reamparser.js'
       }
     ],
     sidebar: {
