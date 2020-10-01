@@ -5,7 +5,7 @@ Typed variables are not yet implemented in the current parser.
 
 The goal is to implement synchronize type checking in the editor, and async type checking in the standalone parser.
 
-The type of the variables are specified in the schema file.
+The type of the variables are specified in the codebook.
 The design will be either:
 ```markdown
 # Country

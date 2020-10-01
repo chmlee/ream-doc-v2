@@ -52,8 +52,8 @@ module.exports = {
     ],
     sidebar: {
       '/Language/': [
-        'Getting-Started',
         'Specs',
+        'Getting-Started',
         {
           title: 'Basic',
           collapsable: false,
@@ -69,9 +69,9 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/Language/Advance/Schema',
-            '/Language/Advance/Typed-Variable',
-            '/Language/Advance/Template-Script'
+            '/Language/Advanced/Codebook',
+            '/Language/Advanced/Typed-Variable',
+            '/Language/Advanced/Template-Script'
           ]
         },
         'Comparison',

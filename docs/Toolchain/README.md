@@ -1,20 +1,27 @@
-# Toolkit
+# Toolchain
 
-The following tools are developed around Markdata.
-The goal is to provide a user-friendly workflow to create, edit, distribute and reuse Markdata files.
+The following tools are developed around REAM language.
+The goal is to provide a user-friendly workflow to create, edit, distribute and reuse REAM files.
 
 ## Alpha Stage
 
-- [Markdata.js](https://github.com/chmlee/markdata.js):
-A Markdata parser and emitter written in JavaScript.
+- [reamparser.js](https://github.com/chmlee/reamparser.js):
+a REAM parser and emitter written in JavaScript.
 
-- [Markdata Editor](https://github.com/chmlee/markdata-editor):
-A graphical editor for Markdata files.
+- [REAM Editor](https://github.com/chmlee/ream-editor):
+an integrated development environment (IDE) for REAM files.
 
 ## Planned
 
-- prism-markdata
-a prism-based syntax highlighter for Markdata files.
+- prism-ream:
+a prism-based syntax highlighter for REAM files.
+Contribution welcome.
 
-- mppm:
-A package and project manager for Markdata files, inspired by python-poetry and cargo.
+- reamparser.rs:
+A REAM parser and emitter written in Rust.
+May replace reamparser.js as the default parser for REAM if the development goes well.
+
+- A package manager for REAM, inspired by [python-poetry](https://python-poetry.org) and [Cargo](https://doc.rust-lang.org/cargo/).
+
+- vim-ream:
+syntax highlighting for Vim.

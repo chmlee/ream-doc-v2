@@ -1,5 +1,5 @@
 # Comparison
 
-::: warning NOTE
-a
-:::
+![standards](https://imgs.xkcd.com/comics/standards.png)
+
+...

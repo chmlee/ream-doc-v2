@@ -1,9 +1,9 @@
 # Git Integration
 
 [Git](https://git-scm.com/) is a distributed version control system for personal and collaborative projects.
-It is widely used in programming but can also be applied to other non-tech files, including Markdata files.
+It is widely used in programming but can also be applied to other non-tech files, including REAM files.
 
-This section is not a tutorial on Git, but to showcase what a workflow is like when using Markdata and Git without (too many) technical terminologies.
+This section is not a tutorial on Git, but to showcase what a workflow is like when using REAM and Git without (too many) technical terminologies.
 
 ## Example
 
@@ -83,9 +83,9 @@ Similarly, Bob adds the relevant information and commit the changes:
 ```
 ![Git-3](./img/Git-3.svg)
 
-Note that neither Alice nor Bob is able to see the changes commit in the other branch.
+Note that neither Alice nor Bob is able to see the changes committed in the other branch.
 
-To update the `master` branch, Alice and Bob has to request the changes to be pulled to the `master` branch.
+To update the `master` branch, Alice and Bob have to request the changes to be pulled to the `master` branch.
 Such requests are called *pull requests*.
 
 The `master` branch first merges the changes committed in `bob`.
@@ -134,7 +134,7 @@ The first phase is now completed, and is *tagged* as version `v0.1`.
 ```
 ![Git-5](./img/Git-5.svg)
 
-To keep their branches updated with the changes, Alice and Bob need to *rebase* their branches to `master`.
+To keep their branches updated with `master`, Alice and Bob need to *rebase* their branches to `master`.
 
 ![Git-6](./img/Git-6.svg)
 

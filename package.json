@@ -7,7 +7,7 @@
     "name": "Chih-Ming Louis Lee",
     "email": "louis@chihminglee.com"
   },
-  "repository": "https://github.com/chmlee/markdata.js/markdata",
+  "repository": "https://github.com/chmlee/reamparser.js",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",

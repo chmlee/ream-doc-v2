@@ -1,12 +1,12 @@
-# Schema
+# Codebook
 
 ::: warning NOTE
-Schema is not yet implemented in the current parser.
+Codebook is not yet implemented in the current parser.
 
-A schema file is a separate file that acts as a linter configuration file.
-It allows synchronize checking in the editor, and async checking in the standalone parser.
+The codebook is a separate file that acts as a linter configuration file.
+It allows synchronize checking in REAM editor, and async checking in the standalone parser.
 
-A schema file are very similar to a regular Markdata file, with some extra parameters.
+The codebook is very similar to a regular REAM file, with some extra parameters added.
 The current design is as follows:
 
 ```markdown
@@ -28,7 +28,7 @@ The current design is as follows:
 ```
 The `%` is a placeholder.
 
-The schema file not only dictates what variables each entry have, but also the amount of entries for each class.
+The codebook not only dictates what variables each entry have, but also the amount of entries for each class.
 The parameters following entry names are inspired by regular expression, and imply:
 
 - The file contains exactly one `# Country` entry, as implied by the `{1}` suffix.
