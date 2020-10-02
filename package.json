@@ -1,13 +1,13 @@
 {
   "name": "REAM-doc",
   "version": "0.1.0",
-  "description": "",
+  "description": "Documentation for REAM",
   "main": "index.js",
   "authors": {
     "name": "Chih-Ming Louis Lee",
     "email": "louis@chihminglee.com"
   },
-  "repository": "https://github.com/chmlee/reamparser.js",
+  "repository": "https://github.com/chmlee/ream-doc",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
@@ -20,5 +20,6 @@
     "vuepress": "^1.6.0",
     "webpack": "^4.44.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "author": "Chih-Ming Louis Lee <louis@chihminglee.com>"
 }
