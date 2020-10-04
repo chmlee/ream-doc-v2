@@ -4,6 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
+  base: 'ream-doc',
   title: 'REAM',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
