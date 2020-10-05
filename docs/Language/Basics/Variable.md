@@ -27,7 +27,7 @@ Example:
 - quoted string: "quote"
 ```
 
-<EditorLite item="string" />
+<EditorLite-EditorLite item="string" />
 
 There is not need to quote strings.
 Quotation marks are stored as they are.
@@ -67,7 +67,7 @@ Example:
 - number 2: $-2$
 - number 3: $3.1415926$
 ```
-<EditorLite item="number" />
+<EditorLite-EditorLite item="number" />
 
 If characters are placed outside the dollar signs, the entire value will be stored as strings, preserving the dollar signs.
 
@@ -78,7 +78,7 @@ Example:
 - not number 1: a$1$
 - not number 2: $1$b
 ```
-<EditorLite item="notNumber" />
+<EditorLite-EditorLite item="notNumber" />
 
 ::: details Known Issue
 The current parser will identify every value surrounded by dollar signs as a number.
@@ -112,7 +112,7 @@ Example:
 - not bool 1: `true`
 - not bool 2: FALSE
 ```
-<EditorLite item="boolean" />
+<EditorLite-EditorLite item="boolean" />
 
 Note that boolean values must be exact matches.
 Values not surrounded by batckticks or not uppercased will be stored as strings.
@@ -142,7 +142,7 @@ Example:
   * $-2$
   * $3.1415926$
 ```
-<EditorLite item="list1" />
+<EditorLite-EditorLite item="list1" />
 
 ::: tip
 By default, lists will be ignored when compiled to datasets.
@@ -159,7 +159,7 @@ Spaces before asterisks are not required, but two spaces are recommended.
 * item 3
 ```
 
-<EditorLite item="list2" />
+<EditorLite-EditorLite item="list2" />
 
 Empty lines between list items are allowed, but discouraged:
 ```markdown
@@ -170,4 +170,4 @@ Empty lines between list items are allowed, but discouraged:
   * item 2
   * item 3
 ```
-<EditorLite item="list3" />
+<EditorLite-EditorLite item="list3" />

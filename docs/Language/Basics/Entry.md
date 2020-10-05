@@ -23,7 +23,7 @@ Entries are useful when describing an object with multiple attributes:
 - euro zone: `TRUE`
 ```
 
-<EditorLite item="entry1" />
+<EditorLite-EditorLite item="entry1" />
 
 Let's add some annotations.
 ```markdown
@@ -37,7 +37,7 @@ Let's add some annotations.
   > joined in 1999
 ```
 
-<EditorLite item="entry2" />
+<EditorLite-EditorLite item="entry2" />
 
 Entries should have local unique keys.
 The following code will raise error:
@@ -72,7 +72,7 @@ Examples:
 ## Language
 - name: German
 ```
-<EditorLite item="entry3" />
+<EditorLite-EditorLite item="entry3" />
 
 The `# Country` entry has one variable `name` and three Level-2 child entries `## Language`.
 The three `## Language`  subentries are also known as the *terminal nodes* as they do not contain any subentry.
@@ -100,7 +100,7 @@ Compare the datasets compiled from the following two examples with the previous 
 - name: German
   > This is in a Level 3 Entry
 ```
-<EditorLite item="entry4" />
+<EditorLite-EditorLite item="entry4" />
 
 ```markdown
 # Country
@@ -119,7 +119,7 @@ Compare the datasets compiled from the following two examples with the previous 
 - name: German
 ```
 
-<EditorLite item="entry5" />
+<EditorLite-EditorLite item="entry5" />
 
 A visualization of the differences between the three schemas are as follows.
 The terminal nodes are colored yellow.
@@ -140,7 +140,7 @@ A level can contain subentires of differenct classes:
 - name: Dutch
 ```
 
-<EditorLite item="entry6" />
+<EditorLite-EditorLite item="entry6" />
 
 Also, entries of the same class need not have identical variables, nor the same variable order.
 ```markdown
@@ -160,7 +160,7 @@ Also, entries of the same class need not have identical variables, nor the same 
 ```
 
 
-<EditorLite item="entry7" />
+<EditorLite-EditorLite item="entry7" />
 
 Observe that the order of the variables are preserved by default.
 

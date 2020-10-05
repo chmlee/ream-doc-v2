@@ -29,7 +29,7 @@ Examples:
 - key 3: `TRUE`
   > Annotation for boolean
 ```
-<EditorLite item="annotation1" />
+<EditorLite-EditorLite item="annotation1" />
 
 ```markdown
 # Example
@@ -41,7 +41,7 @@ Examples:
   * `TRUE`
     > Annotation for boolean
 ```
-<EditorLite item="annotation2" />
+<EditorLite-EditorLite item="annotation2" />
 
 Annotations are ignored when compiled to datasets.
 
@@ -58,4 +58,4 @@ Empty lines around annotations are allowed, but discouraged.
 
 - key 4: value 4
 ```
-<EditorLite item="annotation3" />
+<EditorLite-EditorLite item="annotation3" />
