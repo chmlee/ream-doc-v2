@@ -1,3 +1,6 @@
 [submodule "docs/.vuepress/components/EditorLite"]
 	path = docs/.vuepress/components/EditorLite
 	url = https://github.com/chmlee/ream-editor-lite
+[submodule "docs/.vuepress/components/ream-editor-lite"]
+	path = docs/.vuepress/components/EditorLite
+	url = https://github.com/chmlee/ream-editor-lite
