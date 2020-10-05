@@ -165,4 +165,4 @@ Also, entries of the same class need not have identical variables, nor the same 
 Observe that the order of the variables are preserved by default.
 
 The datasets compiled by the last two examples are not too useful for analysis.
-To compile quality analysis-ready datasets, we could specify the schema of the datasets.
+To compile quality analysis-ready datasets, we should specify the schema of the datasets in the codebook.

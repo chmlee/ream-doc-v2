@@ -69,7 +69,7 @@ Example:
 ```
 <EditorLite-EditorLite item="number" />
 
-If characters are placed outside the dollar signs, the entire value will be stored as strings, preserving the dollar signs.
+If characters are placed outside the dollar signs, the entire value will be stored as a string, preserving the dollar signs.
 
 Example:
 ```markdown

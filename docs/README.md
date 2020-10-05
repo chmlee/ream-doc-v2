@@ -9,11 +9,11 @@ footer: Made by Chih-Ming Louis Lee
 REAM is a data serialization standard with Markdown-like syntax.
 The language encourages detailed documentation for individual data points, and aims to be the human-readable, modular and reusable "source code" of social science datasets.
 
-Multiple tools build upon the language are under active development to provide a user-friendly workflow to create, edit and distribute REAM datasets, including a [parser](Toolchain/Parser) that compiles REAM file into analysis-ready format.
+Multiple tools build upon the language are under active development to provide a user-friendly workflow to create, edit and distribute REAM datasets, including a [parser](Toolchain/Parser) that compiles REAM file into analysis-ready format and an [online-editor](https://chmlee.github.io/ream-editor).
 See [Toolchain](Toolchain) for more information.
 
 Though not required, the language and the toolchain is designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative projects.
-[See how REAM works with Git](Language/Git-Integration)
+[See how REAM works with Git](Language/Git-Integration).
 
 ::: warning NOTE
 The project is still at its alpha stage:

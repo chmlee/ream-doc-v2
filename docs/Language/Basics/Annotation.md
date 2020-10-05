@@ -1,16 +1,16 @@
 # Annotation
 
 Annotations follow
-[strings](/Language/Basic/Variable.html#string),
-[numbers](/Language/Basic/Variable.html#number),
+[strings](Variable.html#string),
+[numbers](Variable.html#number),
 and
-[booleans](/Language/Basic/Variable.html#boolean)
+[booleans](Variable.html#boolean)
 in variables in the form of
 ```markdown
 - <key>: <value>
   > <annotation>
 ```
-and items in [lists](/Language/Basic/Variable.html#list) in the form of
+and items in [lists](Variable.html#list) in the form of
 
 ```markdown
 - <key>:

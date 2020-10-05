@@ -75,7 +75,7 @@ module.exports = {
             '/Language/Advanced/Template-Script'
           ]
         },
-        'Comparison',
+        //'Comparison',
         'Git-Integration',
       ],
       '/Toolchain/': [

@@ -7,7 +7,7 @@ The goal of template script is to make datasets modular. Save a large datasets i
 It also make importing other datasets easier.
 
 Template script is inspired by template languages.
-One of the earlier implementation was written in [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, the earlier codes are no longer valid.
+One of the earlier implementation was based on [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, the earlier codes are no longer valid.
 
 A preliminary design is as follows:
 
@@ -23,7 +23,7 @@ import:
 
 # The Benelux Union
 
-## Country `FOR Country IN Belgium, Netherlands, Luxembourg}`
+## Country `FOR Country IN Belgium, Netherlands, Luxembourg`
 - name <String>: `Country::name`
 - capital <String>: `Country::capital`
 - population <Number>: `Country::population`
@@ -50,7 +50,7 @@ This is not super hard to implement.
 Once you understand the basic of REAM, you can kind of write your own template:
 
 ```python
-# You read and parsed the three files and got three dictionaries:
+# You read and parsed the three files and get three dictionaries:
 # belgium_dict = { "Country": [ { "name": "Belgium", "capital": "Brussels", "population": 11433256, "euro_zone": True } ] }
 # netherlands_dict = { "Country": [ { "name": "Netherlands", "capital": "Amsterdam", "population": 17332850, "euro_zone": True } ] }
 # luxembourg_dict = { "Country": [ { "name": "Luxembourg", "capital": "Luxembourg City", "population": 619900, "euro_zone": True } ] }
