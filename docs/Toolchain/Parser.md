@@ -2,14 +2,14 @@
 
 [reamparser.js](https://github.com/chmlee/reamparser.js) is a parser and emitter for REAM written in JavaScript.
 
+NOTE: [REAM-editor](https://github.com/chmlee/ream-editor) ships with reamparser.js and does not required a local copy of the parser.
+
 ## Reqruiements
 
 - node.js
 - commander.js if using the CLI tool `parsemd`
 
 ## Installation
-
-NOTE: [REAM-editor](https://github.com/chmlee/ream-editor) ships with reamparser.js and does not required a local copy of the parser.
 
 ```shell
 $ git clone https://github.com/chmlee/reamparser.js

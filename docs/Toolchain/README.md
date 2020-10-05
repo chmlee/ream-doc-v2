@@ -11,6 +11,9 @@ a REAM parser and emitter written in JavaScript.
 - [REAM Editor](https://github.com/chmlee/ream-editor):
 an integrated development environment (IDE) for REAM files.
 
+- [REAM Editor Lite](https://github.com/chmlee/ream-editor-lite):
+a lite version of REAM Editor as a Vue component.
+
 ## Planned
 
 - prism-ream:

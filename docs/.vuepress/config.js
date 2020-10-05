@@ -56,13 +56,13 @@ module.exports = {
         'Specs',
         'Getting-Started',
         {
-          title: 'Basic',
+          title: 'Basics',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/Language/Basic/Variable',
-            '/Language/Basic/Annotation',
-            '/Language/Basic/Entry'
+            '/Language/Basics/Variable',
+            '/Language/Basics/Annotation',
+            '/Language/Basics/Entry'
           ]
         },
         {
