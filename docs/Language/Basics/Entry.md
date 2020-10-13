@@ -10,7 +10,7 @@ An entry name is proceeded by one or multiple pound signs `#`, in the form of:
 ...
 - <key n>: <value n>
 ```
-`# Example` in previous examples are Level-1 Entries, as denoted by the single leading pound sign.
+`# Example` in previous examples are the headers of Level-1 Entries, as denoted by the single leading pound sign.
 All REAM files start with a Level-1 Entry, and contain exactly one Level-1 Entry.
 
 Entries are useful when describing an object with multiple attributes:

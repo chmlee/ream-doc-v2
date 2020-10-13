@@ -33,8 +33,10 @@ There is not need to quote strings.
 Quotation marks are stored as they are.
 
 :::tip
-The `# Example` in the first line is a Level-1 Entry, and is required in all REAM files.
+The `# Example` in the previous example is the header of a Level-1 Entry, and is required in all REAM files.
 We will discuss this later in the documentation.
+
+For now you can think of it as the "title" of the dataset.
 :::
 
 Values can't contain line breaks.
@@ -96,6 +98,8 @@ instead of
 ```csv
 1,$abc$
 ```
+even though `abc` is not a valid number.
+
 Strict number type checking will be implemented in the future.
 :::
 
@@ -145,7 +149,7 @@ Example:
 <EditorLite-EditorLite item="list1" />
 
 ::: tip
-By default, lists will be ignored when compiled to datasets.
+By default, lists are ignored when compiled to datasets.
 :::
 
 Recall that REAM is indentation insensitive.

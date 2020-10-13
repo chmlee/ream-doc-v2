@@ -36,9 +36,11 @@ This snapshot is known as a *commit*.
 Your two collaborators, Alice and Bob, specializes in Asia and Europe respectively and are tasked to collect data for corresponding region.
 Each of them download a copy of the `data.md` file, to their own *branches*, and work on the files separately.
 
-Now there are three versions of the same file in three branches: `master`, `alice` and `bob`.
+Now there are three copies of the same file in three different branches: `master`, `alice` and `bob`.
 
 ![Git-1](./img/Git-1.svg)
+
+Note all three are colored blue, implying that their contents are identical.
 
 Alice adds the relevant information into `data.md` in the `alice` branch, and commit the changes:
 ```markdown
@@ -139,3 +141,5 @@ To keep their branches updated with `master`, Alice and Bob need to *rebase* the
 ![Git-6](./img/Git-6.svg)
 
 And the cycle goes on.
+
+Instead of having `data_matser.md`, `data_alice.md`, `data_bob.md`, `data_alice_1.md`, `data_bob_1.md`, `data_master_v0.1.md`, you have one `data.md` file with a clean linear history.

@@ -3,7 +3,7 @@
 The following tools are developed around REAM language.
 The goal is to provide a user-friendly workflow to create, edit, distribute and reuse REAM files.
 
-## Alpha Stage
+## Alpha
 
 - [reamparser.js](https://github.com/chmlee/reamparser.js):
 a REAM parser and emitter written in JavaScript.

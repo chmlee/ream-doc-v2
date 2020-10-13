@@ -1,6 +1,6 @@
 ---
 home: true
-tagline: A sane workflow to manage social science datasets
+tagline: A sane workflow to manage collaborative social science datasets
 actionText: Get Started
 actionLink: /Language/Getting-Started
 footer: Made by Chih-Ming Louis Lee
@@ -18,5 +18,7 @@ Though not required, the language and the toolchain is designed to work with [Gi
 ::: warning NOTE
 The project is still at its alpha stage:
 features are added and removed constantly, and backward compatibility is not guaranteed.
-You are free to play around with the tools, but it's not recommended that you use this for anything serious before it enters beta stage (probably not until summer 2021)
+You are free to play around with the tools, but it's not recommended that you use them for anything serious before it enters beta stage (probably not until summer 2021).
+
+See [Roadmap](#) for more information.
 :::
