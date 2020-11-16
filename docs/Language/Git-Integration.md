@@ -12,7 +12,7 @@ At the first phase of the data collection process, we focus on two countries: Af
 
 We start by creating a template for `data.md`:
 
-```markdown
+```ream
 # Dataset
 
 ## Country
@@ -43,7 +43,7 @@ Now there are three copies of the same file in three different branches: `master
 Note all three share the same color, implying that their contents are identical.
 
 Alice adds the relevant information into `data.md` in the `alice` branch, and commit the changes:
-```markdown
+```ream
 # Dataset
 
 ## Country
@@ -65,7 +65,7 @@ Alice adds the relevant information into `data.md` in the `alice` branch, and co
 ![Git-2](./img/Git-2.svg)
 
 Similarly, Bob adds the relevant information and commit the changes:
-```markdown
+```ream
 # Dataset
 
 ## Country
@@ -92,7 +92,7 @@ Such requests are called *pull requests*.
 
 The `master` branch first merges the changes committed in `bob`.
 
-```markdown
+```ream
 # Dataset
 
 ## Country
@@ -116,7 +116,7 @@ The `master` branch first merges the changes committed in `bob`.
 Then merges the changes committed in `alice`.
 The first phase is now complete, and is *tagged* as version `v0.1`.
 
-```markdown
+```ream
 # Dataset
 
 ## Country
