@@ -9,7 +9,7 @@ It allows synchronize checking in REAM editor, and async checking in the standal
 The codebook is very similar to a regular REAM file, with some extra parameters added.
 The current design is as follows:
 
-```markdown
+```ream
 # Country{1}
 - name: %
 - captial: %

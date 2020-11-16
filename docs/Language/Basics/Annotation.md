@@ -6,13 +6,13 @@ Annotations follow
 and
 [booleans](Variable.html#boolean)
 in variables in the form of
-```markdown
+```ream
 - <key>: <value>
   > <annotation>
 ```
 and items in [lists](Variable.html#list) in the form of
 
-```markdown
+```ream
 - <key>:
   * <item>
     > <annotation>
@@ -20,7 +20,7 @@ and items in [lists](Variable.html#list) in the form of
 
 Examples:
 
-```markdown
+```ream
 # Example
 - key 1: value
   > Annotation for string
@@ -31,7 +31,7 @@ Examples:
 ```
 <EditorLite-EditorLite item="annotation1" />
 
-```markdown
+```ream
 # Example
 - list:
   * value
@@ -47,7 +47,7 @@ Annotations are ignored when compiled to datasets.
 
 Empty lines around annotations are allowed, but discouraged.
 
-```markdown
+```ream
 # Example
 - key 1: value 1
 - key 2: value 2

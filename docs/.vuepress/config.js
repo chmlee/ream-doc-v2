@@ -19,7 +19,7 @@ module.exports = {
   head: [
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
   ],
 
   /**
@@ -72,7 +72,8 @@ module.exports = {
           children: [
             '/Language/Advanced/Codebook',
             '/Language/Advanced/Typed-Variable',
-            '/Language/Advanced/Template-Script'
+            '/Language/Advanced/Template-Script',
+            '/Language/Advanced/Advanced-Inheritance'
           ]
         },
         //'Comparison',
@@ -87,6 +88,17 @@ module.exports = {
           children: [
             '/Toolchain/Parser.md',
             '/Toolchain/Editor.md',
+          ]
+        }
+      ],
+      '/Contribution/': [
+        {
+          title: 'Contribution',
+          path: '/Contribution/',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            '/Contribution/Note.md',
           ]
         }
       ]

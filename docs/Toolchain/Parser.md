@@ -6,8 +6,8 @@ NOTE: [REAM-editor](https://github.com/chmlee/ream-editor) ships with reamparser
 
 ## Reqruiements
 
-- node.js
-- commander.js if using the CLI tool `parsemd`
+- `node.js`
+- `commander.js` if using the CLI tool `parsemd`
 
 ## Installation
 
@@ -52,7 +52,16 @@ $ path/to/parsemd path/to/input.md > path/to/output.csv
 
 ## Benchmark
 
-The parser is (surprisingly) fast.
-It compiles a 10000 rows * 360 columns dataset in about 7 seconds, and can be as fast as 3 seconds if utilizes REAM's inheritance feature.
+The parser is fairly fast.
+It compiles a 10000 rows * 360 columns dataset in about 7 seconds, and can be as fast as 3 seconds if utilizes REAM's inheritance feature in my benchmark.
 
-To test it, first generate the four benchmark REAM files with [`generator.py`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/generator.py), than run the benchmark with the script [`benchmark.sh`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/benchmark.sh).
+To test it, first generate the eight benchmark REAM files with [`generator.py`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/generator.py).
+They are identical in content, but with different schemas.
+You can use any benchmark tools you desire.
+If you are using [hyperfine](https://github.com/sharkdp/hyperfine), the script I use is available: [`benchmark_hf.sh`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/benchmark_hf.sh).
+
+The results are as follow:
+
+![benchmark](./benchmark.jpg)
+
+(Intel i7-6700HQ, 8GB Memory, WSL2/Arch Linux with nodejs v15.2.0)

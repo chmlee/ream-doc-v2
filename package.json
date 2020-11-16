@@ -20,6 +20,5 @@
     "vuepress": "^1.6.0",
     "webpack": "^4.44.2"
   },
-  "dependencies": {},
   "author": "Chih-Ming Louis Lee <louis@chihminglee.com>"
 }

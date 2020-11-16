@@ -3,7 +3,7 @@
 Entry is a collection of variables.
 An entry name is proceeded by one or multiple pound signs `#`, in the form of:
 
-```markdown
+```ream
 # <entry name>
 - <key 1>: <value 1>
 - <key 2>: <value 2>
@@ -15,7 +15,7 @@ All REAM files start with a Level-1 Entry, and contain exactly one Level-1 Entry
 
 Entries are useful when describing an object with multiple attributes:
 
-```markdown
+```ream
 # Country
 - name: Belgium
 - capital: Brussels
@@ -26,7 +26,7 @@ Entries are useful when describing an object with multiple attributes:
 <EditorLite-EditorLite item="entry1" />
 
 Let's add some annotations.
-```markdown
+```ream
 # Country
 - name: Belgium
   > short for the Kingdom of Belgium
@@ -41,7 +41,7 @@ Let's add some annotations.
 
 Entries should have local unique keys.
 The following code will raise error:
-```markdown
+```ream
 # Country
 - name: Belgium
 - language: Dutch
@@ -59,7 +59,7 @@ Entries can be nested, and the level of the entry is denoted by the number of le
 So a Level-1 Entry takes the form of `# <Level 1 Entry Name>`, and a Level-2 Entry takes the form of `## <Level 2 Entry Name>`, and so forth.
 
 Examples:
-```markdown
+```ream
 # Country
 - name: Belgium
 
@@ -84,7 +84,7 @@ Note that the variable keys are scoped, so `## Language` is allowed to have a va
 Entry must be nested in order.
 Level-2 Entries can only be nested in a Level-1 Entry, and Level-3 Entries can only be nested in a Level-2 Entry, and so forth.
 Compare the datasets compiled from the following two examples with the previous one:
-```markdown
+```ream
 # Country
 - name: Belgium
 
@@ -102,7 +102,7 @@ Compare the datasets compiled from the following two examples with the previous 
 ```
 <EditorLite-EditorLite item="entry4" />
 
-```markdown
+```ream
 # Country
 - name: Belgium
 
@@ -129,7 +129,7 @@ The terminal nodes are colored yellow.
 
 A level can contain subentires of differenct classes:
 
-```markdown
+```ream
 # Country
 - name: Belgium
 
@@ -143,7 +143,7 @@ A level can contain subentires of differenct classes:
 <EditorLite-EditorLite item="entry6" />
 
 Also, entries of the same class need not have identical variables, nor the same variable order.
-```markdown
+```ream
 # Country
 - name: Belgium
 

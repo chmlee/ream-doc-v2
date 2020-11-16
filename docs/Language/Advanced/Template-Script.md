@@ -9,42 +9,78 @@ It also make importing external datasets easier.
 Template script is inspired by template languages.
 One of the earlier implementations was based on [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, the earlier codes are no longer usable.
 
-A preliminary design is as follows:
+Say you want to bind the following three files:
 
-```markdown
+```ream
 ---
-title: European Union
-author: Chih-Ming Louis Lee
-import:
-  Belgium: ./Belgium.md
-  Netherlands: ./Netherlands.md
-  Luxembourg: ./Luxembourg.md
+title: Belgium
 ---
-
-# The Benelux Union
-
-## Country `FOR Country IN Belgium, Netherlands, Luxembourg`
-- name <String>: `Country::name`
-- capital <String>: `Country::capital`
-- population <Number>: `Country::population`
-- euro zone <Boolean>: `Country::euro_zone`
+# Country
+- name: Belgium
+- capital: Brussels
 ```
 
-is equivalent to the following Jinja code:
+```ream
+---
+title: Netherlands
+---
+# Country
+- name: Netherlands
+- capital: Amsterdam
+```
+
+```ream
+---
+title: Luxembourg
+---
+# Country
+- name: Luxembourg
+- capital: Luxembourg City
+```
+
+You can do so by specifying the schema in the codebook:
+```ream
+---
+title: The Benelux Union
+import:
+  Belgium:     Belgium.md
+  Netherlands: Netherlands.md
+  Luxembourg:  Luxembourg.md
+---
+# The Benelux Union
+
+## FOR Country IN [Belgium, Netherlands, Luxembourg]
+- name: `Country.name`
+- capital: `Country.capital`
+```
+and get the following REAM file:
+```ream
+# The Benelux Union
+
+## Country
+- name: Belgium
+- capital: Brussels
+
+## Country
+- name: Netherlands
+- capital: Amsterdam
+
+## Country
+- name: Luxembourg
+- capital: Luxembourg City
+```
+
+This is equivalent to the following Jinja code:
 
 ```jinja2
 # The Benelux Union
 
-{% for country in Country %}
+{% for country in Countries %}
 ## Country
 - name: {{ country['name'] }}
 - capital {{ country['capital'] }}
-- population: {{ country['population'] }}
-- euro zone: {{ country['euro_zone'] }}
 {% endfor %}
 ```
-
-(There is definitely a better way to write this, but you get the idea.)
 
 This is not super hard to implement.
 Once you understand the basic of REAM, you can write your own template generator.
@@ -70,8 +106,6 @@ for file in benelux_list:
         benelux.write("## Country\n")
         benelux.write(f"- name: { country['name'] }\n")
         benelux.write(f"- capital: { country['capital'] }\n")
-        benelux.write(f"- population: { country['population'] }\n")
-        benelux.write(f"- euro zone: { country['euro_zone'] }\n")
 benelux.close()
 ```
 or use any programming or template language you desire.

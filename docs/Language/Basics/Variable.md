@@ -1,16 +1,27 @@
 # Variable
 
+All REAM file starts with a Level-1 Entry Header, in the form of
+
+```ream
+# <Level-1 Entry Header>
+```
+
+We will discuss what [entries](/Language/Basics/Entry) are later.
+For now, just see this as the title of your dataset.
+
+---
+
 `<variable>` assigns a `<value>` to a `<key>`, in the form of
 
-```markdown
+```ream
 - <key>: <value>
 ```
-Note that a space is required after dash and colon.
+Note that a space is required after the dash and colon.
 
 `<key>` can't be empty.
 It may contain any upper and lowercase letters (`A-Za-z`), digits (`0-9`) and spaces (`U+0020`), but must start with a letter.
 
-`<value>` can be any of the following primitive types:
+`<value>` can be any of the following types:
 
 - [String](#string)
 - [Number](#number)
@@ -20,7 +31,7 @@ It may contain any upper and lowercase letters (`A-Za-z`), digits (`0-9`) and sp
 ## String
 
 Example:
-```markdown
+```ream
 # Example
 - string: value
 - long string: Hello World
@@ -32,16 +43,9 @@ Example:
 There is not need to quote strings.
 Quotation marks are stored as they are.
 
-:::tip
-The `# Example` in the previous example is the header of a Level-1 Entry, and is required in all REAM files.
-We will discuss this later in the documentation.
-
-For now you can think of it as the "title" of the dataset.
-:::
-
 Values can't contain line breaks.
-The following code will raise an error:
-```markdown{3}
+The following will raise an error:
+```ream{3}
 # Example
 - key 1: first line
          second line
@@ -51,7 +55,7 @@ The following code will raise an error:
 The current parser is able to parse the example.
 It will read everything before and including `- key 1: first line`, then stop parsing and return whatever has been parsed, ignoring the rest of the file.
 So the example is equivalent to:
-```markdown
+```ream
 # Example
 - key 1: first line
 ```
@@ -63,7 +67,7 @@ Error handling will be improved in future versions.
 Numbers are surrounded by dollar signs (`$`).
 
 Example:
-```markdown
+```ream
 # Example
 - number 1: $1$
 - number 2: $-2$
@@ -74,7 +78,7 @@ Example:
 If characters are placed outside the dollar signs, the entire value will be stored as a string, preserving the dollar signs.
 
 Example:
-```markdown
+```ream
 # Example
 - number: $1$
 - not number 1: a$1$
@@ -85,7 +89,7 @@ Example:
 ::: details Known Issue
 The current parser will identify every value surrounded by dollar signs as a number.
 So
-```markdown
+```ream
 # Example
 - number: $1$
 - not a number: $abc$
@@ -109,7 +113,7 @@ Boolean values are `` `TRUE` `` and `` `FALSE` ``, both uppercase and surrounded
 
 Example:
 
-```markdown
+```ream
 # Example
 - bool 1: `TRUE`
 - bool 2: `FALSE`
@@ -125,7 +129,7 @@ Values not surrounded by batckticks or not uppercased will be stored as strings.
 
 A list is a sequence of strings, numbers, and/or boolean, in the form of:
 
-```
+```ream
 - <key>:
   * <item>
   * <item>
@@ -135,7 +139,7 @@ A list is a sequence of strings, numbers, and/or boolean, in the form of:
 `<item>` should be in separate lines, following an asterisk (`*`)
 
 Example:
-```markdown
+```ream
 # Example
 - list of strings:
   * item 1
@@ -155,7 +159,7 @@ By default, lists are ignored when compiled to datasets.
 Recall that REAM is indentation insensitive.
 Spaces before asterisks are not required, but two spaces are recommended.
 
-```markdown
+```ream
 # Example
 - still a list:
 * item 1
@@ -166,7 +170,7 @@ Spaces before asterisks are not required, but two spaces are recommended.
 <EditorLite-EditorLite item="list2" />
 
 Empty lines between list items are allowed, but discouraged:
-```markdown
+```ream
 # Example
 - still a list:
   * item 1

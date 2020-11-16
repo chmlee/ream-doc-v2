@@ -40,7 +40,7 @@ Now there are three copies of the same file in three different branches: `master
 
 ![Git-1](./img/Git-1.svg)
 
-Note all three are colored blue, implying that their contents are identical.
+Note all three share the same color, implying that their contents are identical.
 
 Alice adds the relevant information into `data.md` in the `alice` branch, and commit the changes:
 ```markdown
@@ -114,7 +114,7 @@ The `master` branch first merges the changes committed in `bob`.
 ![Git-4](./img/Git-4.svg)
 
 Then merges the changes committed in `alice`.
-The first phase is now completed, and is *tagged* as version `v0.1`.
+The first phase is now complete, and is *tagged* as version `v0.1`.
 
 ```markdown
 # Dataset
@@ -142,4 +142,4 @@ To keep their branches updated with `master`, Alice and Bob need to *rebase* the
 
 And the cycle goes on.
 
-Instead of having `data_matser.md`, `data_alice.md`, `data_bob.md`, `data_alice_1.md`, `data_bob_1.md`, `data_master_v0.1.md`, you have one `data.md` file with a clean linear history.
+Instead of having multiple version of the same file (`data_matser.md`, `data_alice.md`, `data_bob.md`, `data_alice_1.md`, `data_bob_1.md`, `data_master_v0.1.md`), you have one `data.md` file with a clean linear history.
