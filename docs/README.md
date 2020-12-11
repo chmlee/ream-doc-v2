@@ -40,8 +40,10 @@ The language encourages inline documentation for individual data points, and aim
 Multiple tools build around the language are under active development to provide a user-friendly workflow to create, edit and distribute REAM datasets, including a [parser](https://github.com/chmlee/reamparser.js) that compiles REAM file into analysis-ready format and an [online editor](https://chmlee.github.io/ream-editor).
 See [Toolchain](https://chmlee.github.io/ream-doc/Toolchain) for more information.
 
-Though not required, the language and the toolchain is designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative projects.
+Though not required, the language and the toolchain are designed to work with [Git](https://git-scm.com/), a distributed version control system for personal and collaborative projects.
 [See how REAM works with Git](https://chmlee.github.io/ream-doc/Language/Git-Integration.html#example).
+
+![Diagram](./Diagram.svg)
 
 ::: warning NOTE
 The project is still at its alpha stage:

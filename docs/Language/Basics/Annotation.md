@@ -43,7 +43,9 @@ Examples:
 ```
 <EditorLite-EditorLite item="annotation2" />
 
+::: tip
 Annotations are ignored when compiled to datasets.
+:::
 
 Empty lines around annotations are allowed, but discouraged.
 

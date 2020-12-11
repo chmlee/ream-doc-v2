@@ -153,7 +153,7 @@ Example:
 <EditorLite-EditorLite item="list1" />
 
 ::: tip
-By default, lists are ignored when compiled to datasets.
+By default, items in lists would be joined as strings with semicolons as separators
 :::
 
 Recall that REAM is indentation insensitive.

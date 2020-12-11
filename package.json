@@ -20,5 +20,9 @@
     "vuepress": "^1.6.0",
     "webpack": "^4.44.2"
   },
-  "author": "Chih-Ming Louis Lee <louis@chihminglee.com>"
+  "author": "Chih-Ming Louis Lee <louis@chihminglee.com>",
+  "dependencies": {
+    "prismjs": "chmlee/prism",
+    "vuepress-plugin-mathjax": "^1.2.8"
+  }
 }

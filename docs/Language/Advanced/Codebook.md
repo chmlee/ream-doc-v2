@@ -28,7 +28,7 @@ The current design is as follows:
 ```
 The `%` is a placeholder.
 
-The codebook not only dictates what variables each entry have, but also the amount of entries for each class.
+The codebook not only dictates what variables each entry has, but also the amount of entries for each class.
 The parameters following entry names are inspired by regular expression, and imply:
 
 - The file contains exactly one `# Country` entry, as implied by the `{1}` suffix.

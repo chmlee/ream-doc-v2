@@ -18,14 +18,20 @@ a lite version of REAM Editor as a Vue component.
 a fork of syntax highlighting library [PrismJS](https://github.com/PrismJS/prism) with REAM support added.
 I may create a pull request once the language is stable.
 
+- [ream.vim](https://github.com/chmlee/ream.vim):
+syntax highlighting for REAM in Vim.
+
 
 ## Planned
 
 - reamparser.rs:
 A REAM parser and emitter written in Rust.
-May replace reamparser.js as the default parser for REAM if the development goes well.
+It may replace reamparser.js as the default parser for REAM if the development goes well.
 
 - A project and package manager for REAM, inspired by [python-poetry](https://python-poetry.org) and [Cargo](https://doc.rust-lang.org/cargo/).
 
-- vim-ream:
-syntax highlighting for Vim.
+
+## Not maintained
+- [ream-python](https://github.com/chmlee/ream-python):
+a REAM parser and emitter written in Python and [lark](https://github.com/lark-parser/lark).
+It is still available on [Pypi](https://pypi.org/project/ream/) if anyone is interested.

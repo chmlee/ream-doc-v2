@@ -4,7 +4,7 @@
 Template Script is not yet implemented in the current parser.
 
 The goal of the template script is to make datasets modular. Save a large datasets in smaller, manageable chunks, and bind them with the script.
-It also make importing external datasets easier.
+It also makes importing external datasets easier.
 
 Template script is inspired by template languages.
 One of the earlier implementations was based on [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, the earlier codes are no longer usable.
@@ -49,7 +49,7 @@ import:
 ---
 # The Benelux Union
 
-## FOR Country IN [Belgium, Netherlands, Luxembourg]
+## `FOR Country IN [Belgium, Netherlands, Luxembourg]`
 - name: `Country.name`
 - capital: `Country.capital`
 ```

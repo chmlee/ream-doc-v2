@@ -96,7 +96,7 @@ module.exports = {
           title: 'Contribution',
           path: '/Contribution/',
           collapsable: false,
-          sidebarDepth: 1,
+          sidebarDepth: 2,
           children: [
             '/Contribution/Note.md',
           ]
@@ -111,5 +111,14 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
+    [
+      'vuepress-plugin-mathjax',
+      {
+          target: 'chtml',
+          macros: {
+            '*': '\\times',
+        },
+      },
+    ]
   ]
 }
