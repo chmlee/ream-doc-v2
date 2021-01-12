@@ -9,4 +9,4 @@ Click the `Try it!` button under each example to toggle the editor.
 <EditorLite-EditorLite item="string" />
 
 You can also edit REAM files with any text editor, and use the standalone parser to compile the datasets.
-See [reamparser.js](/Toolchain/Parser) for the requirements and installation instructions.
+See [reamparser.js](/https://chmlee.github.io/ream-doc/Toolchain/Parser) for the requirements and installation instructions.
