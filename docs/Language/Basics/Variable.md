@@ -6,7 +6,7 @@ All REAM file starts with a Level-1 Entry Header, in the form of
 # <Level-1 Entry Header>
 ```
 
-We will discuss what [entries](/Language/Basics/Entry) are later.
+We will discuss what [entries](/ream-doc/Language/Basics/Entry) are later.
 For now, just see this as the title of your dataset.
 
 ---
