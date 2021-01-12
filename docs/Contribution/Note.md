@@ -10,7 +10,7 @@ The third section explains some of the design choices in the toolchain, and how 
 ## Problems
 The project was inspired by my work at the Cline Center.
 I work on the Composition of Religious and Ethnic Groups (CREG) Project, and my task is to merge several existing datasets on ethnic groups in one master dataset, with a region focus on Sub-Saharan Africa.
-For every match I make between datasets, I have to update the master dataset, record the rationale, and provide the sources that support the match.
+For every match I make between datasets, I have to update the master dataset, record the rationale in the documentation, as well as the sources that support the match.
 That being said, we have documentation for *every single data point* in the master dataset.
 
 We use Microsoft Excel to edit the master dataset, and Microsoft Word to document the matches.
@@ -37,8 +37,9 @@ I have to filter and sort and zoom out to squeeze all relevant information into 
 I argue that if you need a [hyper-scrolling mouse](https://www.logitech.com/en-us/products/mice/m720-triathlon.910-004790.html) to move between cells comfortably, you are probably using the wrong tool.
 
 My ideal solution should work well with large dataset natively.
+One way to do so is to modularize the dataset.
 
-### Spreadsheet limits the way we store data
+### Spreadsheet's simple strucutre limits the way we store data
 
 The spreadsheet seems like a perfect format to store social science datasets: each row represents a data point, each column represents a variable, and the entire spreadsheet is essentially one gigantic matrix.
 
@@ -50,7 +51,7 @@ For the sake of simplicity, let $j \in \{x, y, z\}$ and $i \in \{1, 2\}$.
 
 If stored in the form of spreadsheet, you'll get 6 data points ($\{x, y, z\} \times \{1, 2\}$):
 
-| $id$ | $country$ | $year$ | $CivilWar$ | $Mountainous$ | $GDP$ |
+| $ID$ | $Country$ | $Year$ | $CivilWar$ | $Mountainous$ | $GDP$ |
 | --- | --- | --- | --- | --- | --- |
 | 1 | $x$ | $1$ | $w_{x1}$ | $m_x$ | $g_{x1}$ |
 | 2 | $x$ | $2$ | $w_{x2}$ | $m_x$ | $g_{x2}$ |
@@ -61,41 +62,42 @@ If stored in the form of spreadsheet, you'll get 6 data points ($\{x, y, z\} \ti
 
 Since the spreadsheet is small and well-ordered, its easy for users to update the data.
 Say we want to update $Mountainous$ for country $x$ from $m_x$ to $m'_{x}$, we are able to quickly locate the two $m_x$s and update the data manually - they are stored in column 5 of row 1 and 2.
-But if the data is not well-ordered, or the spreadsheet is huge, locating the relevant cells may not be easy.
+But if the data is not well-ordered, or the spreadsheet is huge, locating all relevant cells may not be easy, and this may lead to maintenance nightmare.
 
 One solution is to update the relevant cells with a scripting language, such as VBA, Python or R.
-So you would do something like `data$Mountainous[data$country == 'x',] = new_value`in R.
+So you would do something like `data$Mountainous[data$Country == 'x',] = new_value`in R.
 This requires users to be familiar with programming.
 
 Another solution is to change the way we store data.
 Observe that any data point with the same $country$ will have the same $Mountainous$.
-To reference the same information, we can save the data in a structured form.
+Data point where $Country = x$ will always have $Mountain = m_x$, regardless of what $Year$ is.
+To save $m_x$ only once in the dataset, we can reorganize the data in a hierarchal form.
 In JSON, the structure would be something like:
 ```json{5,13,21}
 {
     "country": [
         {
             "name": "x",
-            "Mountainous": "mx"
+            "Mountainous": "m_x"
             "year": [
-                { "name": 1, "CivilWar": "wx1", "GDP": "gx1" }
-                { "name": 2, "CivilWar": "wx2", "GDP": "gx2" }
+                { "name": 1, "CivilWar": "w_x1", "GDP": "g_x1" }
+                { "name": 2, "CivilWar": "w_x2", "GDP": "g_x2" }
             ]
         },
         {
             "name": "y",
-            "Mountainous": "my"
+            "Mountainous": "m_y"
             "year": [
-                { "name": 1, "CivilWar": "wy1", "GDP": "gy1" }
-                { "name": 2, "CivilWar": "wy2", "GDP": "gy2" }
+                { "name": 1, "CivilWar": "w_y1", "GDP": "g_y1" }
+                { "name": 2, "CivilWar": "w_y2", "GDP": "g_y2" }
             ]
         },
         {
             "name": "z",
-            "Mountainous": "mz"
+            "Mountainous": "m_z"
             "year": [
-                { "name": 1, "CivilWar": "wz1", "GDP": "gz1" }
-                { "name": 2, "CivilWar": "wz2", "GDP": "gz2" }
+                { "name": 1, "CivilWar": "w_z1", "GDP": "g_z1" }
+                { "name": 2, "CivilWar": "w_z2", "GDP": "g_z2" }
             ]
         }
     ]
@@ -103,102 +105,102 @@ In JSON, the structure would be something like:
 }
 
 ```
-Observe that there is only one $m_{x}$ in the entire dataset, and the two $GDP$s for country $x$ is associated with this one $m_{x}$.
+Now there is only one $m_{x}$ in the entire dataset, and the two $GDP$s for country $x$ is associated with this one $m_{x}$.
 Now we just have to convert it to a analysis-ready format, by first flatten the structure into:
 ```json
 [
-    {"country_name": "x", "country_Mountainous": "mx", "year_name": 1, "year_CivilWar": "wx1", "year_GDP": "gx1"},
-    {"country_name": "x", "country_Mountainous": "mx", "year_name": 2, "year_CivilWar": "wx2", "year_GDP": "gx2"},
-    {"country_name": "y", "country_Mountainous": "my", "year_name": 1, "year_CivilWar": "wy1", "year_GDP": "gy1"},
-    {"country_name": "y", "country_Mountainous": "my", "year_name": 2, "year_CivilWar": "wy2", "year_GDP": "gy2"},
-    {"countrz_name": "z", "countrz_Mountainous": "mz", "year_name": 1, "year_CivilWar": "wz1", "year_GDP": "gz1"},
-    {"countrz_name": "z", "countrz_Mountainous": "mz", "year_name": 2, "year_CivilWar": "wz2", "year_GDP": "gz2"}
+    {"country_name": "x", "country_Mountainous": "m_x", "year_name": 1, "year_CivilWar": "w_x1", "year_GDP": "g_x1"},
+    {"country_name": "x", "country_Mountainous": "m_x", "year_name": 2, "year_CivilWar": "w_x2", "year_GDP": "g_x2"},
+    {"country_name": "y", "country_Mountainous": "m_y", "year_name": 1, "year_CivilWar": "w_y1", "year_GDP": "g_y1"},
+    {"country_name": "y", "country_Mountainous": "m_y", "year_name": 2, "year_CivilWar": "w_y2", "year_GDP": "g_y2"},
+    {"countrz_name": "z", "countrz_Mountainous": "m_z", "year_name": 1, "year_CivilWar": "w_z1", "year_GDP": "g_z1"},
+    {"countrz_name": "z", "countrz_Mountainous": "m_z", "year_name": 2, "year_CivilWar": "w_z2", "year_GDP": "g_z2"}
 ]
 ```
 then convert this into CSV.
 
-But JSON is not easy to edit manually.
-My ideal solution should use a human-friendly data serialization standard that works well with structured data.
+But JSON is difficult to edit and read, and it doesn't support comments natively.
+My ideal solution should use a human-friendly data serialization standard that works well with hierarchal data.
 
 ### I don't like Microsoft Office Suite
 
 1. I use Linux, and Microsoft Office doesn't run natively on Linux.
-So I had to run a virtual Windows 10 on top of Linux - that is 3 CPU cores, 2.5GB of memory, 200MB of video memory, and 50GB of storage - just to run a spreadsheet application and a word application.
+So I had to run a virtual Windows 10 on top of Linux - that is 2 CPU cores, 2.5GB of memory, 200MB of video memory, and 50GB of storage minimum - just to run a spreadsheet application and a word application.
 My ideal solution should be cross-platform.
 
 2. Microsoft controls my data.
 If I purchase Microsoft 365 service, I am buying the *subscription*, not the actual programmes.
 Once I stop renewing my subscription, my datasets and documentations may not render or work properly.
 Granted, the subscription is not super expensive, and Microsoft is not [Gaussian Inc.](https://www.nature.com/articles/429231a), but the fact that I have to pay an annual fee just to properly access my files make me wonder whether or not I actually own the files.
-My ideal solution should be free, [as in "free speech"](https://www.gnu.org/philosophy/free-sw.en.html).
+My ideal solution should be [free and open-source](https://en.wikipedia.org/wiki/Free_and_open-source_software).
 
 3. Microsoft Excel comes with many wonderful functionalities, most of which I do not use.
-I find myself using Excel as a CSV editor with color support.
-If for some reason I want to do advanced data manipulation, I rather use a scientific languages like R or Python + numpy + pandas instead of the built in VBA.
-My ideal solution should have a minimalistic and high-performing front-end for basic editing, and provide the option to connect to a kernel of my choosing when advance functionalities are required, like [Vim](https://www.vim.org) and [Jupyter Notebook](https://jupyter.org/). (Fun fact: There are [140+ kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) available for Jupyter Notebook, not just ipython)
+I had worked on the same project so long that I wrote custom R and Python scripts to perform commonly used operations more efficiently.
+Now I find myself using Excel only as a CSV editor with color support.
+That being said, my ideal solution should have a minimalistic and high-performing front-end for basic editing, and provide the option to connect to a kernel of my choosing when advance functionalities are required, like [Vim](https://www.vim.org) and [Jupyter Notebook](https://jupyter.org/). (Fun fact: There are [140+ kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) available for Jupyter Notebook, not just ipython)
 
 ### Conclusion
 
 To reiterate, I want a tool/language that
 1. saves data and its documentation in one file,
 2. is able to handle large datasets natively,
-3. works well with structured data,
+3. works well with hierarchal data,
 4. is human-readable,
 5. is cross-platform,
-6. is free,
+6. is free and open-source,
 7. provides or works well with a minimalistic editor.
 
 In additional, I also want the solution to have version control support, or work well with an existing version control tool.
 
 ## Why REAM
 
-I did not initially write REAM with all 8 features in mind.
+I did not initially write REAM with all 7 features in mind.
 
 When collecting my data for my undergraduate thesis, I wanted to edit my dataset in my favourite editor [Neovim](https://neovim.io).
-I was testing [a plugin](https://github.com/chrisbra/csv.vim) that handles CSV files in Vim, but found some of its core functionalities to be inconsistent.
-This is when I start exploring CSV alternatives that is easy to edit in text editors.
-Meanwhile, I start reflecting on my past experience with data and see how I cam improve my workflow with my new solution.
+I tried [a plugin](https://github.com/chrisbra/csv.vim) that handle CSV files in Vim, but found some of its core functionalities to be inconsistent.
+This is when I start exploring CSV alternatives that are easy to edit in text editors.
+Meanwhile, I started reflecting on my past experience with data and see how I cam improve my workflow with my new solution.
 
 ### YAML
 
 My first choice was [YAML](https://yaml.org/) since it's a human-friendly data serialization standard I was already familiar with.
 It also support comments so I can add inline documentation.
-I can rewrite the [previous example](#spreadsheet-limits-the-way-we-store-data) in YAML:
+I can rewrite the [previous example](#spreadsheet-s-simple-strucutre-limits-the-way-we-store-data) in YAML:
 ```yaml
 country:
     - name: x
-      Mountainous: mx
+      Mountainous: m_x
       year:
           - name: 1
-            CivilWar: wx1
-            GDP: gx1
+            CivilWar: w_x1
+            GDP: g_x1
           - name: 2
-            CivilWar: wx2
-            GDP: gx2
+            CivilWar: w_x2
+            GDP: g_x2
     - name: y
-      Mountainous: my
+      Mountainous: m_y
       year:
           - name: 1
-            CivilWar: wy1
-            GDP: gy1
+            CivilWar: w_y1
+            GDP: g_y1
           - name: 2
-            CivilWar: wy2
-            GDP: gy2
+            CivilWar: w_y2
+            GDP: g_y2
     - name: z
-      Mountainous: mz
+      Mountainous: m_z
       year:
           - name: 1
-            CivilWar: wz1
-            GDP: gz1
+            CivilWar: w_z1
+            GDP: g_z1
           - name: 2
-            CivilWar: wz2
-            GDP: gz2
+            CivilWar: w_z2
+            GDP: g_z2
 ```
 
 It's so much more readable than JSON.
 
 But that's not all.
-YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#id2765878) allows easy reference to existing data.
+YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#id2765878) allow easy reference to existing data.
 If I adjust the way data is organized:
 ```yaml
 country:
@@ -263,7 +265,7 @@ To prevent recursive referencing, the data structure is now flat; both `country`
 Since variables with identical keys will be overwritten when referencing, I have to rename variables to make them unique, hence the `country_` and `year_` prefixes.
 And since comments in YAML are simply ignored, I have to modify the parser to extract my inline documentation.
 
-Modifying the parser to parse comments is not hard, but fixing other problems requires modification to the language itself.
+Modifying the parser to parse comments is not hard, but fixing other problems requires creating a superset of the language.
 If that's the case, I see no reason why I must stick to YAML.
 
 ### TOML
@@ -314,37 +316,22 @@ I can rewrite the [previous example](#spreadsheet-limits-the-way-we-store-data) 
     GDP = "gz2"
 ```
 
-I prefer TOML's syntax over YAML's when it comes to nested data, but there is no easy way to reference information in TOML.
+I prefer TOML's syntax over YAML's when it comes to nested data as it doesn't rely on indentation, but there is no referencing in TOML.
 In fact, the author explicitly rejected the idea during early development ([Issue #13](https://github.com/toml-lang/toml/issues/13) and [Issue #77](https://github.com/toml-lang/toml/issues/77)).
 To implement reference in TOML implies creating a superset of TOML.
 
-In conclusion, I want a language that is able to reference and reuse existing data (like the rejected proposal in [Issue #13](https://github.com/toml-lang/toml/issues/13)) and has readable syntax for "list of objects" (or "array of tables" in TOML).
+In conclusion, I want a language that is able to reference and reuse existing data (like the rejected proposal in [Issue #13](https://github.com/toml-lang/toml/issues/13), but with better syntax) and has readable syntax for "list of objects" (or "array of tables" in TOML).
+
 I found none, so I wrote my own.
 
 ### SQL
 
-You might wonder why I didn't consider SQL databases.
-First, I wanted to edit my data in an text editor, and I don't think SQL databases are designed to work that way.
-Second, I did not know SQL by the time I started writing REAM.
+You might wonder why I didn't consider SQL databases, and the answer is quite simple: I did not know SQL back then.
 
-REAM's "inheritance" feature was inspired by my WRONG understanding of how class inheritance work in object-oriented programming.
-I branded the new language as "object-oriented data serialization standard" (which doesn't make sense now that I think of it) and googled the term to see whether or not it is used to describe other technology.
-Of course I got pages and pages of results on SQL.
+Nevertheless, if I want REAM to be more than a personal project, I have to consider what exactly does REAM provide that SQL does not, instead of reinventing a inferior relational database.
+Why would social scientists choose REAM over a 40+ year technology that is proven to be efficient and reliable?
 
-If I want other people to use REAM, I have to be very careful not to reinvent relational databases.
-What exactly do REAM offers that SQL databases don't?
-
-The most fundamental design differences between the two is that SQL databases requires a server to run, while REAM store everything in static files.
-This has profound affects on the workflow:
-
-#### SQL databases are harder to distribute
-
-There are two ways to do so.
-You either export your database into a `.sql` file, or maintain a server to export data as a CSV file when a download request is made.
-The former solution requires your users to install and understand SQL to use it, and the later requires you to maintain a server, which is not free.
-
-REAM saves everything in static files and plan to utilize Git hosting services for data distribution, which is free.
-Downloading REAM files is easy as executing `git clone` commands, and I plan to write a package manager to further simplify the process.
+The most fundamental design differences between the two is that SQL databases are dynamic, while REAM store everything in static files:
 
 #### SQL databases are harder to perform CRUD operations on
 
@@ -386,7 +373,7 @@ I'm working on a module that generates a graphical CRUD application based on the
 There are many solutions for version controlling SQL databases.
 Some involving commercial softwares, others advocate "best practices."
 This is a very complicated topic and I do not have the knowledge to elaborate on each of the solutions.
-The point is, there is no native way to do version controlling in SQL database.
+In summary, there is no native way to version control SQL databases.
 
 REAM, on the other side, save everything in text files.
 You can use any version control tools to track changes.
@@ -398,35 +385,88 @@ This is what modern databases are primarily used for.
 If this is a hard requirement, you should use SQL databases.
 
 But this is not to say you can't use REAM to build websites.
-With the revival of static websites, more and more websites are now built with Markdown with the help of static site generator.
-Since REAM is a strict subset of Markdown, you may be able to figure out a way to use REAM with your static site generator.
+With the help of static site generators, people are building websites with Markdown.
+Since REAM is a strict subset of Markdown, you may be able to figure out a way to use REAM with your static site generator of your choosing.
 
-(I have been searching for a static Wiki generator that (1) uses Markdown, (2) uses Git for version control, and (3) runs entirely on the client - no [server](https://www.mediawiki.org/wiki/MediaWiki) or ["serviceless"](https://tiddlywiki.com/) (what a misleading term).
+(I have been searching for a static Wiki generator that (1) uses Markdown, (2) uses Git for version control, and (3) runs entirely on the client side.
 The only tool that satisfy all three requirements is [MDwiki](https://github.com/Dynalon/mdwiki), which is no longer maintained.)
 
 In conclusion, SQL is a powerful tool.
-You may be able to adapt your workflow to work with SQL databases, but the skill requirements are also higher.
+You may be able to adapt your workflow to work with SQL databases, but it requires insignificant amount of skill and/or money.
 REAM aims to provide an easy workflow to create, edit, distribute and reuse dataset, which will be further explained in the next section.
 
 
 ## Toolchain Design
 
-The subsection on [SQL](#sql) briefly explain why REAM and its toolchain may be a better option compared to SQL databases.
+The subsection on [SQL](#sql) briefly explain why REAM may be a better option compared to SQL databases.
 This section further explain some of the features that makes REAM and it toolchain an appealing tool for social scientists.
 
-### Basic Pinciples
+<!-- ### Design Principle
 
 I have collaboration in mind when designing the toolchain.
 In a collaborative data collection project, there are two types of people: project managers and contributors.
-Project managers are in charge of managing the codebook and establishing the instructions on data collection.
-Contributors collect data following the instructions, edit the datasets, and request changes to be merged back to the master spreadsheet.
-The project managers then inspect the updates, and either accept or reject the merge.
+Project managers are in charge of maintaining the codebook and establishing the instructions on data collection.
+Contributors collect data, edit the datasets, and request changes to be merged back to the master spreadsheet.
+The project managers then review the updates, and decide whether to accept the merge request.
 
-### REAM-editor
+It should be
+There is be no local installation, no third party interpreter/compiler as dependencies, and no need to set up development environment.
+To edit a dataset, all you need to do is to visit the online editor, and drag and drop your REAM file to the browser.
+To submit
+
+As for project manager, the requirements would be higher.
+Since REAM toolchain relies on Git, basic Git knowledge would be very useful.
+-->
+
+### REAM-Editor
+
+Although the language is designed to be editor-friendly, probably not many people are willing edit datasets in text editors.
+An easy-to-use editor to edit REAM file is needed.
+
+#### Web-based
+
+When designing REAM and its toolchain, I have collaborative work in mind.
+In order to make contribution easy, the editor should require no local installation or third party dependencies.
+To edit a REAM file, all you need is to visit the online editor, and drag and drop the file to the browser.
+Pull request can be done through GitHub's website, and GitHub integration might be added to the editor.
+No programming or command line is required for basic operations.
+
+#### Real-Time Preview
+
+Since CSV/spreadsheet is REAM's primary compile target, the editor should provide real-time preview, just like [StackEdit](https://stackedit.io/app#) (This is actually where the inspiration come from)
+
+#### Graphical CRUD Application
+
+After REAM Schema is implemented, REAM-Editor should be able to generate HTML forms based on the schema provided for easy CRUD operation.
+Synchronize type checking and error handling should also be implemented.
+
+#### Hackable
+
+The Editor is written in Vue, so it should be easy to incorporate custom Vue components so as to edit and render the dataset however you desire.
+
+### Parser
+
+The parser is the most important part of the toolchain.
+It compiles REAM datasets to analysis-ready formats, such as CSV and JSON.
+More formats might be supported in the future.
+
+Even though the parser can be written in any programming languages, there is only a few to choose from if we want the parser to be included in the web-based editor.
+The current implementation is written in JavaScript.
+
+However, I still want the parser to be able to work as a command line tool to provide more advanced functionalities.
+To distribute such CLI tool, there are two options:
+
+1. Publish to npm, but I don't think most of the target users have node and npm/yarn installed.
+
+2. Distribute native binaries, but it might be huge in size.
+
+Both are possible, but neither is ideal.
+
+I am experimenting with a Rust implementation, and it might replace the JavaScript one as the default parser if the development goes well.
 
 ### Package Manager
 
-If I want to plot fancy graphs in R, I do not need write a new plotting library.
+If I want to plot fancy graphs in R, I do not need write a plotting library.
 I can use `ggplot2`:
 1. Download `ggplot2`
 ```R
@@ -457,7 +497,7 @@ import numpy.linalg as la
 mat_A_inv = la.inv(mat_A)
 ```
 
-If I want to add GDP in my dataset, I do not need to calculate GDP for each country.
+If I want to add GDP variables to my dataset, I do not need to calculate GDP for each country.
 I can use GDP data from World Bank.
 1. Download the dataset
 
@@ -503,9 +543,9 @@ get_gdp = function(country, year) {
 my_data$GDP = apply(my_data, 1, function(row) get_gdp(row['country'], row['year']))
 ```
 
-(3) Discover Cote d'Ivoire has not GDP. Oh, it's called Sierra Leone in the World Banks' dataset.
+(3) Discover Cote d'Ivoire has `NA` GDP. Oh, it's called "Sierra Leone" in the World Banks' dataset.
 
-(4) Figure out all the name differences between the two datasets and write a dictionary.
+(4) Figure out all the name differences between the two datasets and write a "dictionary" to translate the names.
 ```R
 country_dict = list(
   "Brunei" = "Brunei Darussalam",
@@ -524,10 +564,16 @@ get_gdp = function(my_country, year) {
 }
 ```
 
-There must be a easier way to import and incorporate existing datasets.
+(6) Apply the function on each row in your dataset
+```R
+my_data$GDP = apply(my_data, 1, function(row) get_gdp(row['country'], row['year']))
+```
+
+There should be a easier way to import and add existing datasets to new datasets.
 
 In fact, it's not unheard of to download datasets with package managers.
-Beside the build-in datasets in R, you can download quite a few datasets from [`CRAN`](https://cran.r-project.org/) using `install.pacakges`.
-They can be example datasets in libraries (`diamonds` in `ggplot2`), datasets as libraries (`titanic`), or wrappers of APIs (`censusapi`).
+Beside the build-in datasets in R, you can download quite a few datasets from [`CRAN`](https://cran.r-project.org/) using `install.pacakges`, including example datasets in libraries (`diamonds` in `ggplot2`), datasets as libraries (`titanic`), or wrappers of APIs (`censusapi`).
 
-Packages managers do more than downloading data.
+I think it would be awesome if we have a package manager for REAM datasets.
+Writing a package manager is a notoriously difficult task, so I don't expect this to be officially released in the near future.
+I'll work on a naive implementation (essentially wrappers of git commands) as a proof of concept.
