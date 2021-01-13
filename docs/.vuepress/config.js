@@ -73,7 +73,7 @@ module.exports = {
             '/Language/Advanced/Codebook',
             '/Language/Advanced/Typed-Variable',
             '/Language/Advanced/Template-Script',
-            '/Language/Advanced/Advanced-Inheritance'
+            '/Language/Advanced/Reference'
           ]
         },
         //'Comparison',
