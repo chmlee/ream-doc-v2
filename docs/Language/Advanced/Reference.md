@@ -1,10 +1,12 @@
-# Advanced Inheritance
+# Reference
+
 ::: warning NOTE
 
-Advanced inheritance is not yet implemented in the parser.
-The goal is for entries to make use of the information from their parent entries and/or sub-entries.
+Reference is not yet implemented in the parser.
+The functionality is inspired by YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#anchor/), and allows users to reuse existing data.
 
-To generate entries based on their parent entries:
+This allows referencing data from parent entry:
+
 ```ream
 # The Benelux Union
 - members:
@@ -12,7 +14,7 @@ To generate entries based on their parent entries:
   * Netherlands
   * Luxembourg
 
-## FOR Member in @The_Benelux_Union.members
+## `FOR Member IN @TheBeneluxUnion.members`
 - name: `Member`
 - is_Belgium: `Member == 'Belgium'`
 ```
@@ -37,7 +39,7 @@ and get
 - is_Belgium: `FALSE`
 ```
 
-To summarize the sub-entires:
+Reference also work on subentries:
 ```ream
 # The Benelux Union
 - total_pop: `FOR ALL $Country.pop | SUM()`

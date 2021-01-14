@@ -200,7 +200,7 @@ country:
 It's so much more readable than JSON.
 
 But that's not all.
-YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#id2765878) allow easy reference to existing data.
+YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#id2765878) allow easy reference to existing data and make the dataset modular.
 If I adjust the way data is organized:
 ```yaml
 country:
@@ -316,7 +316,7 @@ I can rewrite the [previous example](#spreadsheet-limits-the-way-we-store-data) 
     GDP = "gz2"
 ```
 
-I prefer TOML's syntax over YAML's when it comes to nested data as it doesn't rely on indentation, but there is no referencing in TOML.
+I prefer TOML's syntax over YAML's when it comes to nested data as it doesn't rely on indentation, but it lack referencing.
 In fact, the author explicitly rejected the idea during early development ([Issue #13](https://github.com/toml-lang/toml/issues/13) and [Issue #77](https://github.com/toml-lang/toml/issues/77)).
 To implement reference in TOML implies creating a superset of TOML.
 
@@ -328,7 +328,7 @@ I found none, so I wrote my own.
 
 You might wonder why I didn't consider SQL databases, and the answer is quite simple: I did not know SQL back then.
 
-Nevertheless, if I want REAM to be more than a personal project, I have to consider what exactly does REAM provide that SQL does not, instead of reinventing a inferior relational database.
+Nevertheless, if I want REAM to be more than a personal project, I have to consider what exactly does REAM provide that SQL does not, instead of reinventing an inferior relational database.
 Why would social scientists choose REAM over a 40+ year technology that is proven to be efficient and reliable?
 
 The most fundamental design differences between the two is that SQL databases are dynamic, while REAM store everything in static files:
@@ -342,10 +342,10 @@ There are three methods that I can think of.
 
 (2) manually edit `INSERT` commands in a `.sql` file, then `\i` and `SELECT` whenever you want to read it.
 
-(3) hire a full-stack engineer to write a front-end CRUD application and maintain the back-end server.
+(3) hire a full-stack engineer to write a front-end CRUD application and maintain the back-end server, or do them yourself.
 
-The third methods, again, is not free.
-As to the first two methods... I don't think anyone want to do this in a large project.
+The third method is too expensive for a personal project.
+As to the first two methods... I don't think SQL is designed to be used like that.
 
 REAM, on the other side, can be edited in any text editor.
 Since it is designed to do so, it is much pleasant to the eyes in plain text.
@@ -385,8 +385,8 @@ This is what modern databases are primarily used for.
 If this is a hard requirement, you should use SQL databases.
 
 But this is not to say you can't use REAM to build websites.
-With the help of static site generators, people are building websites with Markdown.
-Since REAM is a strict subset of Markdown, you may be able to figure out a way to use REAM with your static site generator of your choosing.
+With the help of static site generators, it's common to see website written entirely in Markdown.
+Since REAM is a strict subset of Markdown, you may be able to figure out a way to use REAM with the static site generator of your choosing.
 
 (I have been searching for a static Wiki generator that (1) uses Markdown, (2) uses Git for version control, and (3) runs entirely on the client side.
 The only tool that satisfy all three requirements is [MDwiki](https://github.com/Dynalon/mdwiki), which is no longer maintained.)
@@ -461,8 +461,6 @@ To distribute such CLI tool, there are two options:
 2. Distribute native binaries, but it might be huge in size.
 
 Both are possible, but neither is ideal.
-
-I am experimenting with a Rust implementation, and it might replace the JavaScript one as the default parser if the development goes well.
 
 ### Package Manager
 
@@ -574,6 +572,6 @@ There should be a easier way to import and add existing datasets to new datasets
 In fact, it's not unheard of to download datasets with package managers.
 Beside the build-in datasets in R, you can download quite a few datasets from [`CRAN`](https://cran.r-project.org/) using `install.pacakges`, including example datasets in libraries (`diamonds` in `ggplot2`), datasets as libraries (`titanic`), or wrappers of APIs (`censusapi`).
 
-I think it would be awesome if we have a package manager for REAM datasets.
+I think it would be awesome if we have a package and project manager for REAM datasets.
 Writing a package manager is a notoriously difficult task, so I don't expect this to be officially released in the near future.
 I'll work on a naive implementation (essentially wrappers of git commands) as a proof of concept.

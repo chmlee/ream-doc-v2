@@ -24,10 +24,6 @@ syntax highlighting for REAM in Vim.
 
 ## Planned
 
-- reamparser.rs:
-A REAM parser and emitter written in Rust.
-It may replace reamparser.js as the default parser for REAM if the development goes well.
-
 - A project and package manager for REAM, inspired by [python-poetry](https://python-poetry.org) and [Cargo](https://doc.rust-lang.org/cargo/).
 
 
