@@ -46,8 +46,7 @@ Though not required, the language and the toolchain are designed to work with [G
 ![Diagram](./Diagram.svg)
 
 ::: warning NOTE
-The project is still at its alpha stage.
-Breaking changes may be introduced, and backward compatibility is not guaranteed.
+The project is still at its alpha stage, and backward compatibility is not guaranteed.
 You are free to play around with the tools, but it's not recommended that you use them for anything serious before it enters beta stage (probably not until 2022).
 
 See [Roadmap](#) for more information.

@@ -6,20 +6,28 @@ The goal is to provide a user-friendly workflow to create, edit, distribute and 
 ## Alpha
 
 - [reamparser.js](https://github.com/chmlee/reamparser.js):
-a REAM parser and emitter written in native JavaScript.
+a REAM parser written in JavaScript.
+This is the current default parser for REAM Editor.
 
-- [REAM Editor](https://github.com/chmlee/ream-editor):
-a hackable editor for REAM.
+- [REAM Editor](https://chmlee.github.io/ream-editor):
+a web-based editor for REAM.
 
 - [REAM Editor Lite](https://github.com/chmlee/ream-editor-lite):
 a lite version of REAM Editor as a Vue component.
 
 - [prism-ream](https://github.com/chmlee/prism):
 a fork of syntax highlighting library [PrismJS](https://github.com/PrismJS/prism) with REAM support added.
-I may create a pull request once the language is stable.
+Pull requests may be submitted once the language is stable.
 
 - [ream.vim](https://github.com/chmlee/ream.vim):
 syntax highlighting for REAM in Vim.
+
+- [ream-core](https://github.com/chmlee/ream-core):
+an experimental REAM parser written in Rust.
+Planned functionalities include emitter, linter, and documentation generator.
+It may replace reamparser.js as the default parser for REAM Editor if the development goes well.
+
+
 
 
 ## Planned

@@ -19,11 +19,10 @@ However, there are several things I don't like about the workflow.
 ### Dataset and documentation are separate
 
 For every match I make, I first edit the master dataset in Excel, then edit the documentation in Word.
-I'm essentially doing the same thing twice in two different applications, increasing the likelihood of human error.
-The potential inconsistency between the dataset and the documentation not only make the dataset hard to read but also hard to update in the future.
+Recording the same decision is two different applications is tedious and error prone.
+The potential inconsistency between the dataset and the documentation not only make the dataset harder to read but also hard to update in the future.
 
 My ideal solution should merge the dataset and its documentation in one single file.
-Either I merge the documentation into the dataset, or parse the dataset from the documentation.
 
 ### Large spreadsheets are hard to edit
 
@@ -39,7 +38,7 @@ I argue that if you need a [hyper-scrolling mouse](https://www.logitech.com/en-u
 My ideal solution should work well with large dataset natively.
 One way to do so is to modularize the dataset.
 
-### Spreadsheet's simple strucutre limits the way we store data
+### Spreadsheet's simple structure limits the way we store data
 
 The spreadsheet seems like a perfect format to store social science datasets: each row represents a data point, each column represents a variable, and the entire spreadsheet is essentially one gigantic matrix.
 
@@ -49,7 +48,7 @@ $$CivilWar_{ij} = \beta_{0} + \beta_{1}Mountainous_{j} + \beta_{2}GDP_{ij}$$
 where $CivilWar_{ij}$ is civil war onset for country $j$ on year $i$, $Mountainous_{j}$ measures how mountainous country $j$ is, and $GDP_{ij}$ measures the GDP for country $j$ for year $i$.
 For the sake of simplicity, let $j \in \{x, y, z\}$ and $i \in \{1, 2\}$.
 
-If stored in the form of spreadsheet, you'll get 6 data points ($\{x, y, z\} \times \{1, 2\}$):
+If stored in the form of spreadsheet, your dataset should look something like:
 
 | $ID$ | $Country$ | $Year$ | $CivilWar$ | $Mountainous$ | $GDP$ |
 | --- | --- | --- | --- | --- | --- |
@@ -67,9 +66,10 @@ But if the data is not well-ordered, or the spreadsheet is huge, locating all re
 One solution is to update the relevant cells with a scripting language, such as VBA, Python or R.
 So you would do something like `data$Mountainous[data$Country == 'x',] = new_value`in R.
 This requires users to be familiar with programming.
+Also using any languages other than VBA meaning exporting and re-importing the spreadsheet.
 
 Another solution is to change the way we store data.
-Observe that any data point with the same $country$ will have the same $Mountainous$.
+Observe that any data point with the same $country$ will have the same $Mountainous$:
 Data point where $Country = x$ will always have $Mountain = m_x$, regardless of what $Year$ is.
 To save $m_x$ only once in the dataset, we can reorganize the data in a hierarchal form.
 In JSON, the structure would be something like:
@@ -106,7 +106,7 @@ In JSON, the structure would be something like:
 
 ```
 Now there is only one $m_{x}$ in the entire dataset, and the two $GDP$s for country $x$ is associated with this one $m_{x}$.
-Now we just have to convert it to a analysis-ready format, by first flatten the structure into:
+We just have to convert it to an analysis-ready format, by first flatten the structure into:
 ```json
 [
     {"country_name": "x", "country_Mountainous": "m_x", "year_name": 1, "year_CivilWar": "w_x1", "year_GDP": "g_x1"},
@@ -131,7 +131,6 @@ My ideal solution should be cross-platform.
 2. Microsoft controls my data.
 If I purchase Microsoft 365 service, I am buying the *subscription*, not the actual programmes.
 Once I stop renewing my subscription, my datasets and documentations may not render or work properly.
-Granted, the subscription is not super expensive, and Microsoft is not [Gaussian Inc.](https://www.nature.com/articles/429231a), but the fact that I have to pay an annual fee just to properly access my files make me wonder whether or not I actually own the files.
 My ideal solution should be [free and open-source](https://en.wikipedia.org/wiki/Free_and_open-source_software).
 
 3. Microsoft Excel comes with many wonderful functionalities, most of which I do not use.
@@ -157,7 +156,7 @@ In additional, I also want the solution to have version control support, or work
 I did not initially write REAM with all 7 features in mind.
 
 When collecting my data for my undergraduate thesis, I wanted to edit my dataset in my favourite editor [Neovim](https://neovim.io).
-I tried [a plugin](https://github.com/chrisbra/csv.vim) that handle CSV files in Vim, but found some of its core functionalities to be inconsistent.
+I tried [a plugin](https://github.com/chrisbra/csv.vim) that handles CSV files in Vim, but found some of its core functionalities to be inconsistent.
 This is when I start exploring CSV alternatives that are easy to edit in text editors.
 Meanwhile, I started reflecting on my past experience with data and see how I cam improve my workflow with my new solution.
 
@@ -260,7 +259,7 @@ with open("test3.csv", "w") as f:
 ```
 to generate the CSV file.
 
-But the readability dramatically drops.
+But this breaks the hierarchal structure.
 To prevent recursive referencing, the data structure is now flat; both `country` and `year` entires are now placed at the same level instead of being nested in one another.
 Since variables with identical keys will be overwritten when referencing, I have to rename variables to make them unique, hence the `country_` and `year_` prefixes.
 And since comments in YAML are simply ignored, I have to modify the parser to extract my inline documentation.
@@ -353,7 +352,7 @@ Since it is designed to do so, it is much pleasant to the eyes in plain text.
 SQL:
 ```sql
 INSERT INTO person (first_name, last_name, gender, email)
-values ('John', 'Doe', 'Male', 'john.doe@gmail.com');
+values ('John', 'Doe', 'Male', 'john.doe@example.com');
 ```
 
 REAM:
@@ -361,11 +360,11 @@ REAM:
 ## Person
 - first_name: John
 - last_name: Doe
-- last_name: Male
-- email: john.doe@gmail.com
+- gender: Male
+- email: john.doe@example.com
 ```
 
-A hackable editor for REAM is also under development.
+An editor for REAM is also under development.
 I'm working on a module that generates a graphical CRUD application based on the schema provided.
 
 #### SQL databases are harder to version control
@@ -385,14 +384,14 @@ This is what modern databases are primarily used for.
 If this is a hard requirement, you should use SQL databases.
 
 But this is not to say you can't use REAM to build websites.
-With the help of static site generators, it's common to see website written entirely in Markdown.
+With the rise of static site generators, it is now possible to write a website entirely in Markdown.
 Since REAM is a strict subset of Markdown, you may be able to figure out a way to use REAM with the static site generator of your choosing.
 
 (I have been searching for a static Wiki generator that (1) uses Markdown, (2) uses Git for version control, and (3) runs entirely on the client side.
 The only tool that satisfy all three requirements is [MDwiki](https://github.com/Dynalon/mdwiki), which is no longer maintained.)
 
 In conclusion, SQL is a powerful tool.
-You may be able to adapt your workflow to work with SQL databases, but it requires insignificant amount of skill and/or money.
+You may be able to adapt your workflow to work with SQL databases, but it requires significant amount of skill and/or money to make it work.
 REAM aims to provide an easy workflow to create, edit, distribute and reuse dataset, which will be further explained in the next section.
 
 
@@ -437,7 +436,7 @@ Since CSV/spreadsheet is REAM's primary compile target, the editor should provid
 
 #### Graphical CRUD Application
 
-After REAM Schema is implemented, REAM-Editor should be able to generate HTML forms based on the schema provided for easy CRUD operation.
+After REAM Schema is implemented, REAM-Editor should be able to generate HTML forms based on the schema provided for basic CRUD operation.
 Synchronize type checking and error handling should also be implemented.
 
 #### Hackable
@@ -456,11 +455,14 @@ The current implementation is written in JavaScript.
 However, I still want the parser to be able to work as a command line tool to provide more advanced functionalities.
 To distribute such CLI tool, there are two options:
 
-1. Publish to npm, but I don't think most of the target users have node and npm/yarn installed.
+1. Publish to npm, but I suspect few of the potential users have node and npm/yarn installed.
 
 2. Distribute native binaries, but it might be huge in size.
 
 Both are possible, but neither is ideal.
+
+I am currently experimenting with a Rust implementation.
+If successful, the parser would be compiled to binary executables for the CLI tool, and WASM modules for the web-based editor.
 
 ### Package Manager
 
@@ -469,7 +471,6 @@ I can use `ggplot2`:
 1. Download `ggplot2`
 ```R
 install.packages("ggplot2")
-```
 2. Import `ggplot2`
 ```R
 library(ggplot2)
@@ -573,5 +574,5 @@ In fact, it's not unheard of to download datasets with package managers.
 Beside the build-in datasets in R, you can download quite a few datasets from [`CRAN`](https://cran.r-project.org/) using `install.pacakges`, including example datasets in libraries (`diamonds` in `ggplot2`), datasets as libraries (`titanic`), or wrappers of APIs (`censusapi`).
 
 I think it would be awesome if we have a package and project manager for REAM datasets.
-Writing a package manager is a notoriously difficult task, so I don't expect this to be officially released in the near future.
+Writing a package manager that people don't hate is a notoriously difficult task, so I don't expect this to be officially released in the near future.
 I'll work on a naive implementation (essentially wrappers of git commands) as a proof of concept.

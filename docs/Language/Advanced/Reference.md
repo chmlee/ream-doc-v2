@@ -1,48 +1,67 @@
 # Reference
-
 ::: warning NOTE
 
 Reference is not yet implemented in the parser.
-The functionality is inspired by YAML's [anchors and aliases](https://yaml.org/spec/1.2/spec.html#anchor/), and allows users to reuse existing data.
 
-This allows referencing data from parent entry:
+REAM reference is inspired by YAML's anchor and alias, and is my implementation for the [rejected feature for TOML](https://github.com/toml-lang/toml/issues/13).
 
+Another inspiration for referencing is my wrong understanding of what inheritances are in object-oriented programming.
+I initially thought inheritances works with *instances*, and child instances are able to call parent instances' attributes and methods.
+
+It turns out that what I was thinking was similar to a programming paradigm called "environmental acquisition" [(Gil & Lorenz, 1995)](https://www.cs.technion.ac.il/users/wwwb/cgi-bin/tr-get.cgi/1995/LPCR/LPCR9507.pdf) but there is almost no implementation.
+The only one I could find is the python package [Acquisition](https://github.com/zopefoundation/Acquisition), and a simple illustration of how it work is as follows:
+
+```python
+import ExtensionClass, Acquisition
+
+class Country(ExtensionClass.Base):
+    def __init__(self, name):
+        self.name = name
+
+class Language(Acquisition.Implicit):
+    def __init__(self, name):
+        self.name = name
+
+belgium = Country("Belgium")
+flemish = Language("Flemmish")
+
+flemish.country = belgium
+
+print(flemish.country.name) # Belgium
+```
+
+`belgium` is a `Country` object, and `flemish` is a `Language` object.
+While `Language` is not a subclass of `Country`, I can make `flemish` acquire the attribute `name` from `belgium`.
+
+The preliminary design is as follows.
+
+Example 1:
+```ream
+# CountryYear
+- country: Belgium
+- year: 2020
+- unique_id(THIS): `THIS.country + '_' + THIS.year`
+```
+
+Example 2:
+```ream
+# Country
+- name: United States of America
+- captial: Washington, D.C
+
+## City
+- name: New York
+- is_capital(THIS): `THIS.name == THIS::SUPER.capital`
+```
+
+Example 3:
 ```ream
 # The Benelux Union
 - members:
   * Belgium
   * Netherlands
   * Luxembourg
-
-## `FOR Member IN @TheBeneluxUnion.members`
-- name: `Member`
-- is_Belgium: `Member == 'Belgium'`
-```
-and get
-```ream
-# The Benelux Union
-- members:
-  * Belgium
-  * Netherlands
-  * Luxembourg
-
-## Member
-- name: Belgium
-- is_Belgium: `TRUE`
-
-## Member
-- name: Netherlands
-- is_Belgium: `FALSE`
-
-## Member
-- name: Luxembourg
-- is_Belgium: `FALSE`
-```
-
-Reference also work on subentries:
-```ream
-# The Benelux Union
-- total_pop: `FOR ALL $Country.pop | SUM()`
+- total_pop(THIS): `THIS::Country.pop.SUM()`
 
 ## Country
 - name: Belgium
@@ -56,22 +75,3 @@ Reference also work on subentries:
 - name: Luxembourg
 - pop: $619900$
 ```
-and get
-```ream
-# The Benelux Union
-- total_pop: $29386005$
-
-## Country
-- name: Belgium
-- pop: $11433255$
-
-## Country
-- name: Netherlands
-- pop: $17332850$
-
-## Country
-- name: Luxembourg
-- pop: $619900$
-```
-
-:::

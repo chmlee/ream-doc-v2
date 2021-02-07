@@ -72,8 +72,9 @@ module.exports = {
           children: [
             '/Language/Advanced/Codebook',
             '/Language/Advanced/Typed-Variable',
-            '/Language/Advanced/Template-Script',
-            '/Language/Advanced/Reference'
+            '/Language/Advanced/Template',
+            '/Language/Advanced/Computed-Variable',
+            '/Language/Advanced/Reference',
           ]
         },
         //'Comparison',

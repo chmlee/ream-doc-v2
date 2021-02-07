@@ -41,7 +41,7 @@ Example:
 <EditorLite-EditorLite item="string" />
 
 There is not need to quote strings.
-Quotation marks are stored as they are.
+Quotation marks will be preserved.
 
 Values can't contain line breaks.
 The following will raise an error:
