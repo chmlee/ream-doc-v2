@@ -3,36 +3,27 @@
 ::: warning NOTE
 Template is not yet implemented in the current parser.
 
-The goal of the template script is to make datasets modular. Save a large datasets in smaller, manageable chunks, and bind them with the script.
-It also makes importing external datasets easier.
+The goal of the template is to make datasets modular. Save a large datasets in smaller, manageable chunks, and bind them with the template specified int he codebook.
+It also makes importing external datasets possible.
 
 Template is inspired by template languages.
-One of the earlier implementations was based on [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, the earlier codes are no longer usable.
+One of the earlier implementations was based on [Jinja](https://jinja.palletsprojects.com), but since the project has moved away from Python, a new solution is needed.
 
-Say you want to bind the following three files:
+Say you want to bind the following three files into one file:
 
 ```ream
----
-title: Belgium
----
 # Country
 - name: Belgium
 - capital: Brussels
 ```
 
 ```ream
----
-title: Netherlands
----
 # Country
 - name: Netherlands
 - capital: Amsterdam
 ```
 
 ```ream
----
-title: Luxembourg
----
 # Country
 - name: Luxembourg
 - capital: Luxembourg City
@@ -40,21 +31,51 @@ title: Luxembourg
 
 You can do so by specifying the schema in the codebook:
 ```ream
----
-title: The Benelux Union
-import:
-  Belgium:     Belgium.md
-  Netherlands: Netherlands.md
-  Luxembourg:  Luxembourg.md
----
+# The Benelux Union
+- countries (List.Path):
+  * ./Country/Belgium.ream
+  * ./Country/Netherlands.ream
+  * ./Country/Luxembourg.ream
+
+{% FOR Country IN $countries %}
+## Country
+- name: {{ Country$name }}
+- capital: {{ Country$capital}}
+```
+
+If you are familiar with any template language, you can probably tell I'm trying to write the template logics with REAM syntax as much as I can to let them less out of place.
+External elements are imported through specifying a variable with `List.path` type, a list of file paths.
+We don't need to mark where the `FOR` loop ends with something like `{% ENDFOR %}` since of course I want to render the entire `## Country` entry and not just part of it.
+But I have yet to find a better way to incorporate the `FOR` logic with REAM syntax, hence the weird `{% FOR ... IN ... %}` syntax.
+
+Or maybe it is a bad idea to write template logics with native syntax, and I should just write all template logics with an entirely different syntax.
+Since Jinja is the only template language I am familiar with, let's write the template logics in a Jinja-like syntax.
+It would probably look like:
+
+```jinja2
+{% import './Country/Belgium.ream'     as Belgium %}
+{% import './Country/Netherlands.ream' as Netherlands %}
+{% import './Country/Luxembourg.ream'  as Luxembourg %}
+{% set Countries = [ Belgium, Netherlands, Luxembourg ] %}
 # The Benelux Union
 
-{% FOR Country IN [Belgium, Netherlands, Luxembourg] %}
+{% for Country in Countries %}
 ## Country
-- name: `Country.name`
-- capital: `Country.capital`
+- name: {{ Country$name }}
+- capital: {{ Country$capital }}
+{% endfor %}
 ```
-and get the following REAM file:
+
+This is so much harder to read.
+If this is what my template language eventually looks like, why would anyone choose this instead of using something like Jinja which features similar syntax but more mature, more feature-rich, and (almost certainly) faster?
+
+(Well, one reason may be that this is NOT how you should write Jinja, as [it is usually recommended to remove as much logic from templates as possible](https://jinja.palletsprojects.com/en/2.11.x/faq/#isn-t-it-a-terrible-idea-to-put-logic-into-templates), and I put EVERY logic in the template.
+I would assume other template languages have similar recommendations.)
+
+If I want to write a template language for REAM, I want my solution to incorporate elegantly into REAM's native syntax, just like Vue's [`v-for`](https://vuejs.org/v2/api/#v-for).
+
+Anyway, both templates should generate the following file:
+
 ```ream
 # The Benelux Union
 
@@ -71,50 +92,6 @@ and get the following REAM file:
 - capital: Luxembourg City
 ```
 
-This is equivalent to the following Jinja code:
-
-```jinja2
-# The Benelux Union
-
-{% for country in Countries %}
-## Country
-- name: {{ country['name'] }}
-- capital {{ country['capital'] }}
-{% endfor %}
-```
-
-This is not super hard to implement.
-Once you understand the basic of REAM, you can write your own template generator.
-You can use Python:
-
-```python
-# You read and parsed the three files and got three dictionaries:
-# belgium_dict = { "Country": [ { "name": "Belgium", "capital": "Brussels", "population": 11433256, "euro_zone": True } ] }
-# netherlands_dict = { "Country": [ { "name": "Netherlands", "capital": "Amsterdam", "population": 17332850, "euro_zone": True } ] }
-# luxembourg_dict = { "Country": [ { "name": "Luxembourg", "capital": "Luxembourg City", "population": 619900, "euro_zone": True } ] }
-
-benelux_list = [
-    belgium_dict,
-    netherlands_dict,
-    luxembourg_dict,
-]
-
-benelux = open('./benelux.md', 'w')
-benelux.write("# The Benelux Union\n")
-for file in benelux_list:
-    country_list = file['Country']
-    for country in country_list:
-        benelux.write("## Country\n")
-        benelux.write(f"- name: { country['name'] }\n")
-        benelux.write(f"- capital: { country['capital'] }\n")
-benelux.close()
-```
-or use any programming or template language you desire.
-
-It's not hard, but writing a custom script every time you make a dataset seems cumbersome.
-There should be a better way.
-
-![the general problem](https://imgs.xkcd.com/comics/the_general_problem.png)
-
 [Filter](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-builtin-filters) is another useful functionality I plan to implement.
+See [Computed Variable](/ream-doc/Language/Advanced/Computed-Variable).
 :::

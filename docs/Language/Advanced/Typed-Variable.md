@@ -1,21 +1,10 @@
 # Typed Variable
 
 ::: warning NOTE
-Typed variables are not yet implemented in the current parser.
-
-The goal is to implement synchronize type checking in the editor, and async type checking in the standalone parser.
+Typed system is not yet implemented in the current parser.
 
 The type of the variables are specified in the codebook.
 It may look like:
-```ream
-# Country
-- name: (String)
-- capital: (String)
-- population: (Number)
-- euro zone: (Boolean)
-```
-
-or
 
 ```ream
 # Country
@@ -23,6 +12,16 @@ or
 - capital (String): %
 - population (Number): %
 - euro zone (Boolean): %
+```
+
+or
+
+```ream
+# Country
+- name: (String)
+- capital: (String)
+- population: (Number)
+- euro zone: (Boolean)
 ```
 
 or
@@ -39,15 +38,21 @@ or
   > !Type: Boolean
 ```
 
-Subtypes will be introduced, such as:
-- `Number::Interger`
-- `Number::Float`
-- `Number::Fraction`
+I'm leaning toward the first one, but no decision has been made yet.
 
 New types will also be introduced, such as:
-- `Factor::[ (AF)rica | (AS)ia | (EU)rope | (N)orth (A)merica | (S)outh (A)merica ]`
-- `Regex::/^(0?[1-9]|1[0-2]):[0-5][0-9]$/`
-- `List::Number::Integer`
+- `Number.Fraction`
 - `Date`
+- `Coordinates`
+
+Explicit typing can also be added to a regular REAM data file:
+
+```ream
+# Country
+- name (String): Belgium
+- capital (String): Brussels
+- population (Integer): $11433256$
+- euro zone (Boolean): `TRUE`
+```
 
 :::

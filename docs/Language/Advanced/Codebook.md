@@ -3,8 +3,7 @@
 ::: warning NOTE
 Codebook is not yet implemented in the current parser.
 
-The codebook is a separate file that acts as a linter configuration file.
-It allows synchronize checking in REAM editor, and async checking in the standalone parser.
+Beside the usual functions codebooks usually serve, codebooks in REAM also acts as schema validators and interface file.
 
 The codebook is very similar to a regular REAM file, with some extra parameters added.
 The current design is as follows:
@@ -28,7 +27,7 @@ The current design is as follows:
 ```
 The `%` is a placeholder.
 
-The codebook not only dictates what variables each entry has, but also the amount of entries for each class.
+The codebook not only dictates what variables each class of entry has, but also the amount of entries for each class.
 The parameters following entry names are inspired by regular expression, and imply:
 
 - The file contains exactly one `# Country` entry, as implied by the `{1}` suffix.

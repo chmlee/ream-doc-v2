@@ -5,15 +5,15 @@ It probably doesn't belong in the official documentation, and will be moved to m
 
 The first section lists some of the problems I experience when using Microsoft Excel and Word to collect and document social science data.
 The second section explains the motivation behind creating REAM.
-The third section explains some of the design choices in the toolchain, and how these designs makes REAM an appealing choice for social scientists.
+The third section explains some of the design choices for the toolchain, and how these designs makes REAM an appealing choice for social scientists.
 
 ## Problems
 The project was inspired by my work at the Cline Center.
 I work on the Composition of Religious and Ethnic Groups (CREG) Project, and my task is to merge several existing datasets on ethnic groups in one master dataset, with a region focus on Sub-Saharan Africa.
 For every match I make between datasets, I have to update the master dataset, record the rationale in the documentation, as well as the sources that support the match.
-That being said, we have documentation for *every single data point* in the master dataset.
+That being said, we have documentation for *(almost) every data point* in the master dataset.
 
-We use Microsoft Excel to edit the master dataset, and Microsoft Word to document the matches.
+We use Microsoft Excel to store the data, and Microsoft Word to document the matches.
 However, there are several things I don't like about the workflow.
 
 ### Dataset and documentation are separate
