@@ -70,7 +70,7 @@ See [how reference work](/ream-doc/Language/Advanced/Reference).
 ### Batteriess Included (WIP)
 
 Multiple tools are developed around REAM to provide a user-friendly workflow to create, edit, distribute and reuse REAM dataset, including REAM serializer/deserializer, documentation generator, linter, schema validator, template engine, project manager, and more.
-See [Toolchain](/ream-doc/toolchain) for more information.
+See [Toolchain](/ream-doc/Toolchain) for more information.
 
 ### Git Integration
 
